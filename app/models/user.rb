@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
   private
 
-  # x
   def fetch_github_commits
     @commit_status = {}
     # token = self.github_token
