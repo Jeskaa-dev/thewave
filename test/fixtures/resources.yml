@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  content: MyText
+  image_url: MyString
+  price: 1
+  difficulty: MyString
+  resource_url: MyString
+  skill: one
+
+two:
+  name: MyString
+  content: MyText
+  image_url: MyString
+  price: 1
+  difficulty: MyString
+  resource_url: MyString
+  skill: two

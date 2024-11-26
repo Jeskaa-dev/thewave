@@ -1,4 +1,4 @@
 class TrainingPlan < ApplicationRecord
   belongs_to :user
-  has_many :trainings
+  has_many :resources
 end
