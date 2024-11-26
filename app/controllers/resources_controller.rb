@@ -10,8 +10,6 @@ class ResourcesController < ApplicationController
     authorize @resource
   end
 
-
-
   private
 
   def set_resource
