@@ -29,19 +29,27 @@ def exchange_code(code)
     {"Accept" => "application/json"}
   )
 
-  parse_response(result)
+  response = parse_response(result)
+  token = response["access_token"]
+
+  # Stockez le token dans l'utilisateur
+  user_info = user_info(token)
+  user = User.find_or_create_by(github_id: user_info["id"])
+  user.update(github_token: token)
+
+  response
 end
 
 def user_info(token)
   uri = URI("https://api.github.com/user")
 
   result = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-    body = {"access_token" => token}.to_json
+    headers = {
+      "Accept" => "application/json",
+      "Authorization" => "Bearer #{token}"
+    }
 
-    auth = "Bearer #{token}"
-    headers = {"Accept" => "application/json", "Content-Type" => "application/json", "Authorization" => auth}
-
-    http.send_request("GET", uri.path, body, headers)
+    http.get(uri.path, headers)
   end
 
   parse_response(result)

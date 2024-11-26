@@ -3,6 +3,7 @@ require 'uri'
 require 'json'
 
 class User < ApplicationRecord
+  before_save :fetch_github_commits
   has_many :training_plans
   has_many :user_skills
   has_many :skills, through: :user_skills
@@ -12,18 +13,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  before_save :fetch_github_commits
+
 
   private
 
   def fetch_github_commits
     @commit_status = {}
+    # token = self.github_token
 
     GITHUB_PATHS.each do |repo, path|
       uri = URI.parse("https://api.github.com/repos/#{github_id}#{path}#{github_id}")
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/vnd.github+json"
-      # request["Authorization"] = github_id
+      # request["Authorization"] = "Bearer #{token}"
       request["X-GitHub-Api-Version"] = "2022-11-28"
 
       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|

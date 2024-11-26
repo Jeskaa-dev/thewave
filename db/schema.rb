@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_26_142011) do
-
+ActiveRecord::Schema[7.1].define(version: 2024_11_26_163135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +32,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142011) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "training_plans", force: :cascade do |t|
+    t.integer "progression"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_training_plans_on_user_id"
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.integer "level"
+    t.string "name"
+    t.bigint "skill_id", null: false
+    t.bigint "training_plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_trainings_on_skill_id"
+    t.index ["training_plan_id"], name: "index_trainings_on_training_plan_id"
   end
 
   create_table "user_skills", force: :cascade do |t|
@@ -57,7 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142011) do
     t.string "first_name"
     t.integer "age"
     t.string "location"
-    t.integer "github_id"
+    t.string "github_id"
     t.string "carrer_programs"
     t.integer "batch_number"
     t.string "image_url"
@@ -66,6 +84,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142011) do
   end
 
   add_foreign_key "resources", "skills"
+  add_foreign_key "training_plans", "users"
+  add_foreign_key "trainings", "skills"
+  add_foreign_key "trainings", "training_plans"
   add_foreign_key "user_skills", "skills"
   add_foreign_key "user_skills", "users"
 end
