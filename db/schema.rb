@@ -86,9 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_163135) do
   add_foreign_key "completions", "training_plans"
   add_foreign_key "resources", "skills"
   add_foreign_key "training_plans", "users"
-  
-  
-  
   add_foreign_key "user_skills", "skills"
   add_foreign_key "user_skills", "users"
 end
