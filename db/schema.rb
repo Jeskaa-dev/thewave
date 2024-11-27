@@ -45,7 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_163135) do
   end
 
   create_table "training_plans", force: :cascade do |t|
-    t.integer "progression"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
