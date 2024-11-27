@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "resources#index"
 
-  resources :resources
+resources :resources
 
 end

@@ -60,4 +60,9 @@ class User < ApplicationRecord
     @commit_status
   end
 
+  # def proficiency_in(skill)
+  #   user_skill = user_skills.find_by(skill: skill)
+  #   user_skill ? user_skill.proficiency : 0
+  # end
+
 end

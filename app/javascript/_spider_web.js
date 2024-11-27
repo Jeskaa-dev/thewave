@@ -1,18 +1,20 @@
-data = [{
-  type: 'scatterpolar',
-  r: [39, 28, 8, 7, 28, 39], /* ce sont les valeurs de chaque skill */
-  theta: ['HTML/CSS','JS/TS','Ruby/Back-End', 'Python', 'SQL/DB', 'Technical'],
-  fill: 'toself'
-}]
+document.addEventListener("DOMContentLoaded", () => {
+  const data = [{
+    type: 'scatterpolar',
+    r: [80, 60, 25, 40], /* ce sont les valeurs de chaque skill */
+    theta: ['HTML/CSS', 'Javascript', 'SQL & DB', 'Ruby on Rails'], /* ce sont les noms des skills */
+    fill: 'toself'
+  }]
 
-layout = {
-  polar: {
-    radialaxis: {
-      visible: true,
-      range: [0, 100]
-    }
-  },
-  showlegend: false
+  const layout = {
+    polar: {
+      radialaxis: {
+        visible: true,
+        range: [0, 100] /* c'est l'échelle de 0 à 100 */
+      }
+    },
+    showlegend: false
+  }
+  Plotly.newPlot("tester", data, layout)
 }
-
-Plotly.newPlot("tester", data, layout)
+)
