@@ -43,7 +43,6 @@ gem "bootsnap", require: false
 
 #services for the app
 gem "devise"
-gem "bootstrap", "~> 5.2"
 gem "simple_form"
 gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
@@ -71,3 +70,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "tailwindcss-rails", "~> 3.0"
+gem 'simple_form-tailwind'
