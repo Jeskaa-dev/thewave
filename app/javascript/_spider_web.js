@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         range: [0, 100] /* c'est l'échelle de 0 à 100 */
       }
     },
-    showlegend: false
+      showlegend: false
   }
   Plotly.newPlot("tester", data, layout)
 }
