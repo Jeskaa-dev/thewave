@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  get 'pages/home'
   get 'user_skills/index'
   get 'skills/index'
   get 'skills/show'
 
   devise_for :users
 
-  root to: 'home#index'
+  root to: 'pages#home'
 
   resources :users do
     resources :skills, only: %i[index]
