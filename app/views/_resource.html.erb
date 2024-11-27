@@ -1,13 +1,8 @@
 <div class="card-resource">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+
   <div class="card-resource-infos">
  <% @resources.each do |resource| %>
         <div class="card-index">
-            <% if resource.image_url.attached? %>
-              <%= cl_image_tag resource.image.key %>
-            <% else %>
-              <%= image_tag("", alt: "Image de #{resource.skill}") %>
-            <% end %>
             <h2><%= resource.name %></h2>
             <p><%= resource.skill %></p>
             <p><%= resource.difficulty %></p>
@@ -18,3 +13,5 @@
   </div>
 </div>
 </div>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<div id="tester" style="width:700px;height:700px;"></div>

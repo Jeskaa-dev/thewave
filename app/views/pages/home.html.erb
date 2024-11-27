@@ -1,0 +1,13 @@
+<h2>“T’inquiète bichette, on est là pour toi !!”</h2>
+
+<div class="identity-card">
+  <p> Moi c'est <%= @user.first_name%></p>
+  <p>Batch #<%= @user.batch_number%> - WebDev Toulouse</p>
+  <p><%= @user.github_username%></p>
+  <p><%= @user.carrer_programs %></p>
+</div>
+
+<div class="block-training">
+  <h3>Ton programme de formation</h3>
+  <p> <%= @user.training_plans %></p>
+</div>
