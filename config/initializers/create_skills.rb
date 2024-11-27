@@ -18,6 +18,6 @@ SKILL_LIST = {
 }
 
 # Créer toutes les skills en fonction de la constante SKILL_LIST
-SKILL_LIST.each do |_, data|
-  Skill.find_or_create_by(name: data[:name])
-end
+# SKILL_LIST.each do |_, data|
+#   Skill.find_or_create_by(name: data[:name])
+# end
