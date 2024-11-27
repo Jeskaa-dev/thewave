@@ -1,7 +1,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'dotenv/load'
+require 'dotenv/load' # Assurez-vous que dotenv est chargé
 
 class User < ApplicationRecord
   # before_save :fetch_github_commits
@@ -16,16 +16,21 @@ class User < ApplicationRecord
 
   def fetch_github_commits
     @commit_status = {}
-    # token = self.github_token
+    token = ENV['GIT_TOKEN_TEST']
+
+    # Créer toutes les skills en fonction de la constante SKILL_LIST
+    create_skills_from_list
 
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
       langage = data[:langage]
       optional = data[:Optional] == "true"
-      uri = URI.parse("https://api.github.com/repos/#{github_id}#{path}#{github_id}")
+      base_url = "https://api.github.com/repos/#{github_id}#{path}#{github_id}"
+      uri = URI(base_url)
+
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/vnd.github+json"
-      request["Authorization"] = "Bearer #{ENV['GIT_TOKEN_TEST']}"
+      request["Authorization"] = "Bearer #{token}"
       request["X-GitHub-Api-Version"] = "2022-11-28"
 
       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -41,6 +46,7 @@ class User < ApplicationRecord
       end
     end
 
+    # Créer des instances de Skill pour chaque langage unique
     skills = {}
     @commit_status.each_value do |status|
       langage = status[:langage]
@@ -52,17 +58,40 @@ class User < ApplicationRecord
       unless user_skills.exists?(skill: skill)
         total_commits = @commit_status.values.count { |status| status[:langage] == langage && !status[:optional] }
         successful_commits = @commit_status.values.count { |status| status[:langage] == langage && status[:done] }
-        rating = (successful_commits.to_f / total_commits * 50).round
+        wagon_level = SKILL_LIST.find { |_, v| v[:name] == langage }&.dig(1, :wagon_level) || 50
+        rating = (successful_commits.to_f / total_commits * wagon_level).round
         UserSkill.create(user: self, skill: skill, rating: rating)
       end
     end
 
+    # Instancier un plan de formation pour chaque skill
+    create_training_plan(skills)
+
     @commit_status
   end
 
-  # def proficiency_in(skill)
-  #   user_skill = user_skills.find_by(skill: skill)
-  #   user_skill ? user_skill.proficiency : 0
-  # end
+  private
 
+  def create_skills_from_list
+    SKILL_LIST.each do |_, data|
+      Skill.find_or_create_by(name: data[:name])
+    end
+  end
+
+  def create_training_plan(skills)
+    skills.each do |langage, skill|
+      user_skill = user_skills.find_by(skill: skill)
+      next unless user_skill
+
+      FRAME_LEVEL.each do |level, data|
+        if user_skill.rating < data[:min]
+          training_plan = training_plans.create(skill: skill, user: self)
+          resources = Resource.where(skill: skill, difficulty: data[:difficulty])
+          resources.each do |resource|
+            training_plan.resources << resource
+          end
+        end
+      end
+    end
+  end
 end

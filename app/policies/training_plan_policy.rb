@@ -13,6 +13,14 @@ class TrainingPlanPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
+  def edit?
+    update?
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
