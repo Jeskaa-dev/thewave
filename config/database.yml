@@ -22,6 +22,9 @@ default: &default
 development:
   <<: *default
   database: thewave_development
+  username: jeromeanciaux
+  # password: <%= ENV["YOUR_DATABASE_PASSWORD"] %>
+  host: localhost
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
