@@ -5,7 +5,7 @@ class ResourcePolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
   def index?
-    true 
+    true
   end
 
   def show?
@@ -18,5 +18,4 @@ class ResourcePolicy < ApplicationPolicy
       scope.all
     end
   end
-
 end

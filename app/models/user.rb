@@ -1,33 +1,34 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'dotenv/load'
+require 'dotenv/load' # Assurez-vous que dotenv est chargé
 
 class User < ApplicationRecord
-  before_save :fetch_github_commits
+  # before_save :fetch_github_commits
   has_many :training_plans
   has_many :user_skills
   has_many :skills, through: :user_skills
-  has_many :trainings, through: :training_plans
+  has_many :resources, through: :training_plans
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  private
-
   def fetch_github_commits
     @commit_status = {}
-    # token = self.github_token
+    token = ENV['GIT_TOKEN_TEST']
 
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
       langage = data[:langage]
       optional = data[:Optional] == "true"
-      uri = URI.parse("https://api.github.com/repos/#{github_id}#{path}#{github_id}")
+      base_url = "https://api.github.com/repos/#{github_id}#{path}#{github_id}"
+      uri = URI(base_url)
+      puts uri
+
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/vnd.github+json"
-      request["Authorization"] = "Bearer #{ENV['GIT_TOKEN_TEST']}"
+      request["Authorization"] = "Bearer #{token}"
       request["X-GitHub-Api-Version"] = "2022-11-28"
 
       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -43,6 +44,7 @@ class User < ApplicationRecord
       end
     end
 
+    # Créer des instances de Skill pour chaque langage unique
     skills = {}
     @commit_status.each_value do |status|
       langage = status[:langage]
@@ -54,12 +56,52 @@ class User < ApplicationRecord
       unless user_skills.exists?(skill: skill)
         total_commits = @commit_status.values.count { |status| status[:langage] == langage && !status[:optional] }
         successful_commits = @commit_status.values.count { |status| status[:langage] == langage && status[:done] }
-        rating = (successful_commits.to_f / total_commits * 50).round
-        UserSkill.create(user: self, skill: skill, rating: rating)
+        if total_commits > 0
+          wagon_level = SKILL_LIST.find { |_, v| v[:name] == langage }&.dig(1, :wagon_level) || 50
+          rating = (successful_commits.to_f / total_commits * wagon_level).round
+          UserSkill.create(user: self, skill: skill, rating: rating)
+        else
+          Rails.logger.warn("No commits found for langage: #{langage}")
+        end
       end
     end
+
+    # Instancier un plan de formation global pour l'utilisateur
+    create_training_plan
 
     @commit_status
   end
 
+  private
+
+  def create_training_plan
+    # Créer un plan de formation global pour l'utilisateur
+    training_plan = training_plans.create(user: self)
+    puts "Created TrainingPlan ID: #{training_plan.id} for User: #{self.id}"
+
+    # Balayer la liste exhaustive des noms contenus dans la constante SKILL_LIST
+    SKILL_LIST.each do |_, data|
+      skill = Skill.find_by(name: data[:name])
+      next unless skill
+
+      user_skill = user_skills.find_by(skill: skill)
+      rating = user_skill ? user_skill.rating : 0
+
+      # Associer des ressources au plan de formation en fonction du rating de UserSkill
+      skill.resources.each do |resource|
+        resource_max_difficulty = difficulty_to_max(resource.difficulty)
+        if resource_max_difficulty && rating < resource_max_difficulty
+          completion = Completion.create(training_plan: training_plan, resource: resource, done: false)
+          puts "Associated Resource: #{resource.name} with TrainingPlan ID: #{training_plan.id}" if completion.persisted?
+        end
+      end
+    end
+  end
+
+  def difficulty_to_max(difficulty)
+    FRAME_LEVEL.each do |_, data|
+      return data[:max] if data[:difficulty] == difficulty
+    end
+    nil
+  end
 end
