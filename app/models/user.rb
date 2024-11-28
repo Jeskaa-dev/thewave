@@ -89,8 +89,8 @@ class User < ApplicationRecord
 
       # Associer des ressources au plan de formation en fonction du rating de UserSkill
       skill.resources.each do |resource|
-        resource_min_difficulty = difficulty_to_min(resource.difficulty)
-        if resource_min_difficulty && rating < resource_min_difficulty
+        resource_max_difficulty = difficulty_to_max(resource.difficulty)
+        if resource_max_difficulty && rating < resource_max_difficulty
           completion = Completion.create(training_plan: training_plan, resource: resource, done: false)
           puts "Associated Resource: #{resource.name} with TrainingPlan ID: #{training_plan.id}" if completion.persisted?
         end
@@ -98,9 +98,9 @@ class User < ApplicationRecord
     end
   end
 
-  def difficulty_to_min(difficulty)
+  def difficulty_to_max(difficulty)
     FRAME_LEVEL.each do |_, data|
-      return data[:min] if data[:difficulty] == difficulty
+      return data[:max] if data[:difficulty] == difficulty
     end
     nil
   end
