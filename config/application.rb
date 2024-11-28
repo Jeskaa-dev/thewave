@@ -11,6 +11,10 @@ module Thewave
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # Active les sessions et les cookies pour OmniAuth
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_thewave_session'
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.

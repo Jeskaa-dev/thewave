@@ -15,15 +15,27 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
 
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.github_token = auth.credentials.token
+      user.github_id = auth.uid
+      user.github_username = auth.info.nickname # Récupérer le nom d'utilisateur GitHub
+    end
+  end
+
   def fetch_github_commits
     @commit_status = {}
-    token = ENV['GIT_TOKEN_TEST']
+    token = self.github_token
+    username = self.github_username
 
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
       langage = data[:langage]
       optional = data[:Optional] == "true"
-      base_url = "https://api.github.com/repos/#{github_id}#{path}#{github_id}"
+      base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
       uri = URI(base_url)
       puts uri
 
@@ -71,15 +83,6 @@ class User < ApplicationRecord
     create_training_plan
 
     @commit_status
-  end
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.github_token = auth.credentials.token
-      user.github_id = auth.uid
-    end
   end
 
   private
