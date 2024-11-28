@@ -7,11 +7,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "GitHub") if is_navigational_format?
     else
       session["devise.github_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_url, alert: 'Erreur lors de l’authentification avec GitHub.'
     end
   end
 
   def failure
-    redirect_to root_path
+    redirect_to root_path, alert: 'Échec de l’authentification.'
   end
 end

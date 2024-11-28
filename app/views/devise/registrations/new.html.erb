@@ -28,12 +28,10 @@
 <% end %>
 </div>
 
-<div class="m-40 bg-primary-green">
-  TEST
-</div>
-
-<%= render "devise/shared/links" %>
-
-<div>
+<div class="m-40">
+  <div>
   <%= link_to "Sign up with GitHub", user_github_omniauth_authorize_path, class: "btn btn-primary" %>
 </div>
+</div>
+
+<%# <%= render "devise/shared/links" %>
