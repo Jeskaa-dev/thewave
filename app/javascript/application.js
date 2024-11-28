@@ -2,5 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
+import "flowbite"
 import "./_spider_web"
 // import Plotly from "plotly"
