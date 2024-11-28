@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+
+def index
+end
+
   def home
     @users = User.all
     @skills = Skill.all
