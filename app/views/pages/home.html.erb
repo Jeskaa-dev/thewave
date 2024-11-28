@@ -31,39 +31,40 @@
       </ul>
 
       <div class="text-center mt-5">
-        <p class="mb-3"><strong>DTFW <br>DO THE FUCKING WORK</strong></p>
         <%= link_to "Mes skills", "", class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
-        <p class="mt-3"><strong>RTFM <br>READ THE FUCKING MANUEL</strong></p>
       </div>
   </div>
 
 
-  <div class="flex flex-col gap-5 justify-center grow  bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5 mr-3 my-3">
+  <div class="flex flex-col gap-5 justify-center grow  bg-var-white bg-opacity-0  rounded-lg shadow p-5 mr-3 my-3">
     <div class="container text-center rounded">
       <div class="relative group">
         <div class="bg-white p-6 rounded-lg shadow-lg group-hover:bg-gray-800 transition duration-300 ease-in-out">
-          <h2>Mon parcours de formation</h2>
-          <ol class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+          <h2 class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Mon parcours de formation</h2>
+          <ol class="flex items-center justify-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
             <li class="flex items-center">
-              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">1</span>
-              HTML & CSS
-              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-              </svg>
+              <div class="block">
+                <%= image_tag("HTML.png", alt: "logo HTML5", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>HTML & CSS</p>
+              </div>
             </li>
             <li class="flex items-center">
-              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">2</span>
-              JavaScript
-              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-              </svg>
+              <div class="block">
+                <%= image_tag("JS.png", alt: "logo JS", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>JavaScript</p>
+              </div>
             </li>
             <li class="flex items-center">
-              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">3</span>
-              Ruby on Rails
-              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-              </svg>
+              <div class="block">
+                <%= image_tag("Rails.png", alt: "logo Rails", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>Ruby on Rails</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <div class="block">
+                <%= image_tag("SQL.png", alt: "logo SQL", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>SQL</p>
+              </div>
             </li>
           </ol>
           <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Parcours réalisé à :</div>
@@ -75,11 +76,36 @@
       </div>
     </div>
 
-    <div class="relative group bg-var-white">
-      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="">
-      <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-var-black">Mon Portfolio</h5>
-        <p class="mb-3 font-normal text-var-black">Portfolio réalisé à :</p>
+     <div class="container text-center rounded">
+      <div class="relative group">
+        <div class="bg-white p-6 rounded-lg shadow-lg group-hover:bg-gray-800 transition duration-300 ease-in-out">
+          <h2 class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Mon Portfolio</h2>
+          <ol class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">1</span>
+              Création de site web
+              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
+              </svg>
+            </li>
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">2</span>
+              Création de blog
+              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
+              </svg>
+            </li>
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">3</span>
+              Création d'une application web
+            </li>
+          </ol>
+          <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Portfolio réalisé à :</div>
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: 10%"> 10%</div>
+          </div>
+          <%= link_to "Accéder à mon Portfolio 🔥", "", class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
+        </div>
       </div>
     </div>
   </div>
@@ -87,11 +113,6 @@
 </div>
 
 
-
-
-
-
-<h2>“T’inquiète bichette, on est là pour toi !!”</h2>
 <div>
 <%= render 'footer' %>
 </div>
