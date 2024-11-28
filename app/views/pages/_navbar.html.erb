@@ -21,7 +21,29 @@
     </ul>
   </div>
 
+
   <div class="flex items-center justify-end mr-5">
       <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'btn btn-danger ml-2' %>
   </div>
+
+      <ul class="font-medium flex  border border-gray-100 rounded-lg  dark:border-gray-700 gap-5 text-sm md:text-base">
+        <li>
+            <%= link_to "The Wave","", class: "pl-3" %>
+        </li>
+        <li>
+         <%= link_to "Dashboard" %>
+        </li>
+        <li>
+         <%= link_to "Skills" %>
+        </li>
+        <li>
+          <%= link_to "Training" %>
+        </li>
+        <li>
+         <%= link_to "Portfolio" %>
+        </li>
+      </ul>
+    </div>
+     
+
 </nav>
