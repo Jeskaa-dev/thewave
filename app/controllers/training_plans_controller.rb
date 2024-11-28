@@ -1,10 +1,8 @@
 class TrainingPlansController < ApplicationController
   before_action :set_training_plan, only: %i[edit update]
-    # Rescue from Pundit::NotAuthorizedError at the class level
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def show
-    @training_plan = policy_scope(TrainingPlan).find(params[:id])
+    @training_plan = TrainingPlan.find(params[:id])
     authorize @training_plan
   end
 
