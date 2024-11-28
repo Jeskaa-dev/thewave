@@ -10,7 +10,7 @@ class TrainingPlanPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.training_plan == record.training_plan
   end
 
   def update?

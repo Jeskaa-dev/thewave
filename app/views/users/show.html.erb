@@ -1,0 +1,27 @@
+<div>
+  <h1>User Show</h1>
+
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Skills:</strong>
+    <ul>
+      <% @user.user_skills.each do |skill| %>
+        <li><%= skill.name %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p>
+    <strong>Training Plans:</strong>
+    <ul>
+      <% @user.training_plans.each do |plan| %>
+        <li>Training Plan ID: <%= plan.id %></li>
+      <% end %>
+    </ul>
+  </p>
+</div>
