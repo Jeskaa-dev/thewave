@@ -4,7 +4,7 @@ require 'json'
 require 'dotenv/load' if Rails.env.development? || Rails.env.test? # Charger dotenv uniquement en développement et test
 
 class User < ApplicationRecord
-  # before_save :fetch_github_commits
+  after_save :fetch_github_commits
   has_many :training_plans
   has_many :user_skills
   has_many :skills, through: :user_skills
@@ -27,7 +27,8 @@ class User < ApplicationRecord
 
   def fetch_github_commits
     @commit_status = {}
-    token = self.github_token
+    # token = self.github_token
+    token = ENV['GITHUB_TOKEN_TEST']
     username = self.github_username
 
     GITHUB_PATHS.each do |repo, data|
