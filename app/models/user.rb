@@ -1,10 +1,10 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'dotenv/load' # Assurez-vous que dotenv est chargé
+require 'dotenv/load' if Rails.env.development? || Rails.env.test? # Charger dotenv uniquement en développement et test
 
 class User < ApplicationRecord
-  # before_save :fetch_github_commits
+  before_save :fetch_github_commits
   has_many :training_plans
   has_many :user_skills
   has_many :skills, through: :user_skills
@@ -14,7 +14,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
-
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -29,7 +28,8 @@ class User < ApplicationRecord
   def fetch_github_commits
     @commit_status = {}
     # token = self.github_token
-    token = ENV['JULIE_TOKEN']
+    token = ENV['GITHUB_TOKEN_TEST']
+
     username = self.github_username
 
     GITHUB_PATHS.each do |repo, data|
