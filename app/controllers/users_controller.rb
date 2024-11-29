@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def show
+
     @user = policy_scope(User).find(params[:id])
+    @skills = Skill.all
+    @user_skills = UserSkill.all
     authorize @user
   end
 
