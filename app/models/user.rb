@@ -28,7 +28,8 @@ class User < ApplicationRecord
 
   def fetch_github_commits
     @commit_status = {}
-    token = self.github_token
+    # token = self.github_token
+    token = ENV['LELONG_TOKEN']
     username = self.github_username
 
     GITHUB_PATHS.each do |repo, data|
