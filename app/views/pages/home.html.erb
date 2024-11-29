@@ -7,8 +7,8 @@
   <div class="max-w-sm bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5 ml-3 my-3">
 
     <%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
-    <h2 class="text-center font-bold underline my-3">Mon nom est Xavier</h2>
-    <p>Batch #1535 - Web Dev Toulouse</p>
+    <h2 class="text-center font-bold underline my-3"><%= @user.github_username%></h2>
+    <p>Web Dev Toulouse</p>
     <span>GitHub  <i class="fa-brands fa-github"></i></span>
       <ul class="mt-3">
         <li>
@@ -31,7 +31,7 @@
       </ul>
 
       <div class="text-center mt-5">
-        <%= link_to "Mes skills", "", class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
+        <%= link_to "Mes skills", user_path(@user), class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
       </div>
   </div>
 
@@ -44,25 +44,25 @@
           <ol class="flex items-center justify-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
             <li class="flex items-center">
               <div class="block">
-                <%= image_tag("HTML.png", alt: "logo HTML5", class: "w-20 h-20 rounded mx-auto" ) %>
+                <%= image_tag("HTML/CSS.png", alt: "logo HTML5", class: "w-20 h-20 rounded mx-auto" ) %>
                 <p>HTML & CSS</p>
               </div>
             </li>
             <li class="flex items-center">
               <div class="block">
-                <%= image_tag("JS.png", alt: "logo JS", class: "w-20 h-20 rounded mx-auto" ) %>
+                <%= image_tag("JavaScript.png", alt: "logo Javascript", class: "w-20 h-20 rounded mx-auto" ) %>
                 <p>JavaScript</p>
               </div>
             </li>
             <li class="flex items-center">
               <div class="block">
-                <%= image_tag("Rails.png", alt: "logo Rails", class: "w-20 h-20 rounded mx-auto" ) %>
-                <p>Ruby on Rails</p>
+                <%= image_tag("Ruby.png", alt: "logo Ruby", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>Ruby</p>
               </div>
             </li>
             <li class="flex items-center">
               <div class="block">
-                <%= image_tag("SQL.png", alt: "logo SQL", class: "w-20 h-20 rounded mx-auto" ) %>
+                <%= image_tag("Database.png", alt: "logo Database", class: "w-20 h-20 rounded mx-auto" ) %>
                 <p>SQL</p>
               </div>
             </li>
