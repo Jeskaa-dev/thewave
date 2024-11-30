@@ -29,8 +29,8 @@ class User < ApplicationRecord
     @commit_status = {}
     # token = self.github_token
     token = ENV['LELONG_TOKEN']
-    username = self.github_username
-
+    username = "Vincent-lelong"
+   " https://github.com/Vincent-lelong/fullstack-challenges/tree/master/01-Ruby/01-Programming-basics/01-Buddy"
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
       langage = data[:langage]
