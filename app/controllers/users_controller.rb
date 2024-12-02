@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def show
+    @training_plan = TrainingPlan.where(user_id: current_user.id).first
+    @completions = Completion.where(training_plan_id: @training_plan.id)
+    @skills = Skill.where(user_skill: current_user.id)
 
     @user = policy_scope(User).find(params[:id])
-    @skills = Skill.all
-    @user_skills = UserSkill.all
     authorize @user
 
     @commit_status = @user.user_commits
