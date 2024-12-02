@@ -1,44 +1,35 @@
 class TrainingPlansController < ApplicationController
-  before_action :set_training_plan, only: %i[index show new edit update]
+  before_action :set_training_plan, only: %i[index show done]
 
   def index
     authorize @training_plan
   end
 
   def show
-    # @user = User.find(@training_plan.user_id)
-    @skills = Skill.all
     @user_skills = current_user.user_skills
-    # @completion = current_user.completions
-    @resources = Resource.all
+    @full_skills = Skill.all
+    @completions = Completion.where(training_plan_id: @training_plan.id)
+    @resources = Resource.where(id: @completions.map(&:resource_id))
+    @skills = Skill.where(id: @user_skills.map(&:skill_id))
     authorize @training_plan
   end
 
-  def new
-  end
+  # def edit
+  #   authorize @training_plan
+  # end
 
-  def create
-    @training_plan = TrainingPlan.new(training_plan_params)
-    @training_plan.user = current_user
-    authorize @training_plan
-    if @training_plan.save
-      redirect_to training_plan_path(@training_plan)
-    else
-      render :new
-    end
-  end
+  # def update
+  #   authorize @training_plan
+  #   if @training_plan.update(training_plan_params)
+  #     redirect_to training_plan_path(@training_plan)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def edit
-    authorize @training_plan
-  end
-
-  def update
-    authorize @training_plan
-    if @training_plan.update(training_plan_params)
-      redirect_to training_plan_path(@training_plan)
-    else
-      render :edit
-    end
+  def done
+    @completions = Completion.where(training_plan_id: @training_plan.id)
+    authorize @completion
   end
 
   private
@@ -52,6 +43,6 @@ class TrainingPlansController < ApplicationController
   end
 
   def training_plan_params
-    params.require(:training_plan).permit(:id, :user_id, :skill_id, :name, :description)
+    params.require(:training_plan).permit(:id, :user_id, :skill_id)
   end
 end
