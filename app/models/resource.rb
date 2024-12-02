@@ -4,8 +4,8 @@ class Resource < ApplicationRecord
   has_many :training_plans, through: :completions
   # has_one_attached :photo
 
-  FORMAT_CHOICES = %w[Vidéo Exercices Formation]
+  FORMAT_CHOICES = %w[Vidéo Exercice Formation]
 
   validates :format, inclusion: { in: FORMAT_CHOICES }
-  validates :difficulty, inclusion: { in: %w[Débutant Intermédiaire Confirmé Professionnel Expert] }
+  validates :difficulty, inclusion: { in: %w[Débutant Intermédiaire Professionnel] }
 end

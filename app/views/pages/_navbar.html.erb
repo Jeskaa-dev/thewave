@@ -7,13 +7,13 @@
         <%= link_to "The Wave", "/", class: "pl-3" %>
       </li>
       <li>
-        <%= link_to "Dashboard", "/" %>
+        <%= link_to "Mon tableau de cord", "/" %>
       </li>
       <li>
-        <%= link_to "Skills", user_path(@user) %>
+        <%= link_to "Mes acquis", users_path(@user) %>
       </li>
       <li>
-        <%= link_to "Training", training_plans_path(@training_plan) %>
+        <%# <%= link_to "Mes formations", user_training_plan_path(@training_plan) %> %>
       </li>
       <li>
         <%= link_to "Portfolio" %>
