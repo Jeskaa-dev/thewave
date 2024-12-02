@@ -1,13 +1,118 @@
-<h2>“T’inquiète bichette, on est là pour toi !!”</h2>
-
-<div class="identity-card">
-  <p> Moi c'est <%= @user.first_name%></p>
-  <p>Batch #<%= @user.batch_number%> - WebDev Toulouse</p>
-  <p><%= @user.github_username%></p>
-  <p><%= @user.carrer_programs %></p>
+<div>
+<%= render 'navbar' %>
 </div>
 
-<div class="block-training">
-  <h3>Ton programme de formation</h3>
-  <p> <%= @user.training_plans %></p>
+<div class="flex flex-1 gap-3 bg-var-black">
+
+  <div class="max-w-sm bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5 ml-3 my-3">
+
+    <%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
+    <h2 class="text-center font-bold underline my-3"><%= @user.github_username%></h2>
+    <p>Web Dev Toulouse</p>
+    <span>GitHub  <i class="fa-brands fa-github"></i></span>
+      <ul class="mt-3">
+        <li>
+          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job Seeker</label>
+        </li>
+        <li>
+          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Founder</label>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Freelancer</label>
+          </div>
+        </li>
+      </ul>
+
+      <div class="text-center mt-5">
+        <%= link_to "Mes skills", user_path(@user), class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
+      </div>
+  </div>
+
+
+  <div class="flex flex-col gap-5 justify-center grow  bg-var-white bg-opacity-0  rounded-lg shadow p-5 mr-3 my-3">
+    <div class="container text-center rounded">
+      <div class="relative group">
+        <div class="bg-white p-6 rounded-lg shadow-lg group-hover:bg-gray-800 transition duration-300 ease-in-out">
+          <h2 class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Mon parcours de formation</h2>
+          <ol class="flex items-center justify-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+            <li class="flex items-center">
+              <div class="block">
+                <%= image_tag("HTML/CSS.png", alt: "logo HTML5", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>HTML & CSS</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <div class="block">
+                <%= image_tag("JavaScript.png", alt: "logo Javascript", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>JavaScript</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <div class="block">
+                <%= image_tag("Ruby.png", alt: "logo Ruby", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>Ruby</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <div class="block">
+                <%= image_tag("Database.png", alt: "logo Database", class: "w-20 h-20 rounded mx-auto" ) %>
+                <p>SQL</p>
+              </div>
+            </li>
+          </ol>
+          <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Parcours réalisé à :</div>
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+          </div>
+          <%= link_to "Direction mon parcours 🚀🚀", "", class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
+        </div>
+      </div>
+    </div>
+
+     <div class="container text-center rounded">
+      <div class="relative group">
+        <div class="bg-white p-6 rounded-lg shadow-lg group-hover:bg-gray-800 transition duration-300 ease-in-out">
+          <h2 class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Mon Portfolio</h2>
+          <ol class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">1</span>
+              Création de site web
+              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
+              </svg>
+            </li>
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">2</span>
+              Création de blog
+              <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
+              </svg>
+            </li>
+            <li class="flex items-center">
+              <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">3</span>
+              Création d'une application web
+            </li>
+          </ol>
+          <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Portfolio réalisé à :</div>
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: 10%"> 10%</div>
+          </div>
+          <%= link_to "Accéder à mon Portfolio 🔥", "", class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div>
+<%= render 'footer' %>
 </div>
