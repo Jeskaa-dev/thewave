@@ -28,13 +28,16 @@ class User < ApplicationRecord
   def fetch_github_commits
     @commit_status = {}
     # token = self.github_token
-    token = ENV['GITHUB_TOKEN_TEST']
-    username = self.github_username
+    token = ENV['LELONG_TOKEN']
+    username = "Vincent-lelong"
 
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
       langage = data[:langage]
       optional = data[:Optional] == "true"
+      block = data[:block]
+      category = data[:category]
+      name = data[:name]
       base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
       uri = URI(base_url)
       puts uri
@@ -50,10 +53,10 @@ class User < ApplicationRecord
 
       if response.code.to_i == 200
         commits = JSON.parse(response.body)
-        @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional }
+        @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
       else
         Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
-        @commit_status[repo] = { done: false, langage: langage, optional: optional }
+        @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
       end
     end
 
