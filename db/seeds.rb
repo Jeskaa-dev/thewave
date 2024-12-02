@@ -1,4 +1,3 @@
-
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -160,7 +159,7 @@ html_formation_name = [
   "Front End Development Libraries Certification"
 ]
 
-html_formation_price= [
+html_formation_price = [
   19.99,
   24.99,
   0
@@ -175,7 +174,7 @@ html_formation_content = [
     name: html_formation_name[i],
     content: html_formation_content[i],
     image_url: "",
-    price: 0,
+    price: html_formation_price[i],
     difficulty: html_formation_difficulty[i],
     resource_url: html_formation_urls[i],
     skill_id: 1,
