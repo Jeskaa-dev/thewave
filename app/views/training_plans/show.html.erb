@@ -2,33 +2,33 @@
 
   <h1 class="text-2xl font-bold mb-5"><strong>Mon parcours de formation</strong></h1>
 
-
-  <div class="flex flex-col mb-10">
-    <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Compétences</h2>
+  <div id="user-skills" class="flex flex-wrap mb-10" style="width: 100%;">
     <% @skills.each do |skill| %>
-      <div class="flex skill-item mb-4">
-        <h3 class="text-lg font-bold mb-2"><%= skill.name %></h3>
-        <%# <% <%= cl_image_tag("#{skill.name}.png", alt: "Logo de #{skill.name}") %>
+      <div class="skill-item" style="--rating: <%=  current_user.proficiency_in(skill) %>;">
+        <%= skill.name %>
+      </div>
+    <% end %>
+    <div class="skill-item">
+      +
+    </div>
+  </div>
+
+ <div class="flex">
+  <div id="menu-ressources" class="w-1/4 p-4">
+    <% @resources.each do |resource| %>
+      <div class="resource-item flex justify-between items-center p-2 border-b cursor-pointer" data-resource-id="<%= resource.id %>" data-action="click->resource#show">
+        <div>
+          <p><%= resource.name %></p>
+          <p><%= resource.difficulty %></p>
+        </div>
+        <div>
+          <input type="checkbox" <%= resource.completions.first.done ? 'checked' : '' %> disabled>
+        </div>
       </div>
     <% end %>
   </div>
 
-  <div class="flex flex-col">
-    <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Ressources</h2>
-      <div id="menu-ressources">
-        <% @resources.each do |resource| %>
-            <div id="ressources-completion">
-              <div id="ressources">
-                <p><%= resource.name %></p>
-                <p> <%= resource.difficulty %></p>
-              </div>
-              <div id="completion" data-controller="completion">
-                <div id="checkbox" data-completion-target="checkbox" style="width: <%= resource.completions.first.done %>"></div>
-              </div>
-            </div>
-
-        <% end %>
-      </div>
+  <div id="resource-details" class="w-3/4 p-4" data-controller="resource" data-resource-target="details">
+    <!-- Resource details will be displayed here -->
   </div>
-
 </div>

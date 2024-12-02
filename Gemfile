@@ -48,7 +48,6 @@ gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 gem "pundit"
-
 gem "omniauth", "~> 2.1", ">= 2.1.2"
 gem "omniauth-github", "~> 2.0", ">= 2.0.1"
 
