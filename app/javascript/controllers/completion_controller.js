@@ -5,4 +5,6 @@ export default class extends Controller {
   connect() {
     console.log("Hello you !!")
   }
+
+  static targets = [ "checkbox" ]
 }

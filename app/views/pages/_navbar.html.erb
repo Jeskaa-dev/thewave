@@ -4,16 +4,16 @@
 
     <ul class="font-medium flex border border-gray-100 rounded-lg dark:border-gray-700 gap-5 text-sm md:text-base">
       <li>
-        <%= link_to "The Wave", "/", class: "pl-3" %>
+        <%= link_to "The Wave", root_path, class: "pl-3" %>
       </li>
       <li>
-        <%= link_to "Mon tableau de cord", "/" %>
+        <%= link_to "Mon tableau de bord", user_path(current_user) %>
       </li>
       <li>
-        <%= link_to "Mes acquis", users_path(@user) %>
+        <%= link_to "Mes acquis", user_user_skills_path(current_user) %>
       </li>
       <li>
-        <%# <%= link_to "Mes formations", user_training_plan_path(@training_plan) %> %>
+        <%= link_to "Mes formations", user_training_plan_path(current_user.id, current_user.training_plans.last.id) %>
       </li>
       <li>
         <%= link_to "Portfolio" %>
