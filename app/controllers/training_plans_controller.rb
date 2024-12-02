@@ -8,9 +8,9 @@ class TrainingPlansController < ApplicationController
   def show
     @user_skills = current_user.user_skills
     @full_skills = Skill.all
-    @completion = Completion.where(training_plan_id: @training_plan.id)
-    @resources = Resource.where(training_plan_id: @training_plan.id)
-    @skills = Skill.where(resource_id: @training_plan.id)
+    @completions = Completion.where(training_plan_id: @training_plan.id)
+    @resources = Resource.where(id: @completions.map(&:resource_id))
+    @skills = Skill.where(id: @user_skills.map(&:skill_id))
     authorize @training_plan
   end
 
