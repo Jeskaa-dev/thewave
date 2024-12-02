@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> 80e411637ac06d92823fb79dfaf785a72dd7865b
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -108,26 +102,6 @@ video_skill_id = [
   )
 end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 0374b5a97e963a6b7d893bb5e1adfef66bbb2a5c
-=======
-# Créer des ressources pour différents niveaux de difficulté
-Skill.all.each do |skill|
-  10.times do |i|
-    difficulty = FRAME_LEVEL.values.sample[:difficulty]
-    format = FORMAT_CHOICES.sample
-    resource = Resource.create(
-      skill: skill,
-      difficulty: difficulty,
-      format: format,
-      name: "Resource #{i + 1} for #{skill.name} - #{difficulty}"
-    )
-    puts "Created resource: #{resource.name} with difficulty: #{resource.difficulty} and format: #{resource.format}"
-  end
-end
->>>>>>> 7ec7810037b3423006f1f9cc16f95d7d28e5416f
-=======
 html_exercices_urls = [
   "https://www.frontendmentor.io/challenges?difficulty=2",
   "https://www.frontendmentor.io/challenges?difficulty=3",
@@ -185,7 +159,7 @@ html_formation_name = [
   "Front End Development Libraries Certification"
 ]
 
-html_formation_price= [
+html_formation_price = [
   19.99,
   24.99,
   0
@@ -200,7 +174,7 @@ html_formation_content = [
     name: html_formation_name[i],
     content: html_formation_content[i],
     image_url: "",
-    price: 0,
+    price: html_formation_price[i],
     difficulty: html_formation_difficulty[i],
     resource_url: html_formation_urls[i],
     skill_id: 1,
@@ -469,4 +443,4 @@ Resource.create!(
   skill_id: 12,
   format: "Exercice"
 )
->>>>>>> 80e411637ac06d92823fb79dfaf785a72dd7865b
+

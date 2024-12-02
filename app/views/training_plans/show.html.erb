@@ -1,31 +1,34 @@
 <div class="flex flex-col gap-5 justify-center grow bg-var-white rounded-lg shadow p-5 my-10 mr-10 ml-10">
 
-<h1 class="text-2xl font-bold mb-5"><strong>Mon parcours de formation</strong></h1>
-
-<div class="flex flex-col mb-10">
-  <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Compétences</h2>
-  <% @skills.each do |skill| %>
-    <div class="flex skill-item mb-4">
-      <h3 class="text-lg font-bold mb-2"><%= skill.name %></h3>
-      <% <%= cl_image_tag("#{skill.name}.png", alt: "Logo de #{skill.name}") %>
+  <h1 class="text-2xl font-bold mb-5"><strong>Mon parcours de formation</strong></h1>
 
 
-    </div>
-  <% end %>
-</div>
+  <div class="flex flex-col mb-10">
+    <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Compétences</h2>
+    <% @skills.each do |skill| %>
+      <div class="flex skill-item mb-4">
+        <h3 class="text-lg font-bold mb-2"><%= skill.name %></h3>
+        <%# <% <%= cl_image_tag("#{skill.name}.png", alt: "Logo de #{skill.name}") %>
+      </div>
+    <% end %>
+  </div>
 
-<div class="flex flex-col">
-  <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Ressources</h2>
-  <% @skills.each do |skill| %>
-    <details class="resource-item mb-4">
-      <summary class="text-lg font-bold cursor-pointer mb-2"><%= skill.name %></summary>
-      <ul class="list-disc pl-5">
-        <% skill.resources.each do |resource| %>
-          <li class="bg-gray-200 rounded px-2 py-1 mb-1"><%= resource.name %></li>
+  <div class="flex flex-col">
+    <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Ressources</h2>
+      <div id="menu-ressources">
+        <% @resources.each do |resource| %>
+            <div id="ressources-completion">
+              <div id="ressources">
+                <p><%= resource.name %></p>
+                <p> <%= resource.difficulty %></p>
+              </div>
+              <div id="completion" data-controller="completion">
+                <div id="checkbox" data-completion-target="checkbox" style="width: <%= resource.completions.first.done %>"></div>
+              </div>
+            </div>
+
         <% end %>
-      </ul>
-    </details>
-  <% end %>
-</div>
+      </div>
+  </div>
 
 </div>
