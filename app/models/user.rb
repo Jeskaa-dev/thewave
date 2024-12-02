@@ -26,38 +26,43 @@ class User < ApplicationRecord
   end
 
   def fetch_github_commits
-    @commit_status = {}
-    # token = self.github_token
-    token = ENV['LELONG_TOKEN']
-    username = "Vincent-lelong"
+    Rails.cache.fetch("github_commits_#{id}", expires_in: 12.hours) do
+    Rails.logger.info("Fetching data from API for user #{id}")
+      @commit_status = {}
+      # token = self.github_token
+      token = ENV['LELONG_TOKEN']
+      username = "Vincent-lelong"
 
-    GITHUB_PATHS.each do |repo, data|
-      path = data[:path]
-      langage = data[:langage]
-      optional = data[:Optional] == "true"
-      block = data[:block]
-      category = data[:category]
-      name = data[:name]
-      base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
-      uri = URI(base_url)
-      puts uri
+      GITHUB_PATHS.each do |repo, data|
+        path = data[:path]
+        langage = data[:langage]
+        optional = data[:Optional] == "true"
+        block = data[:block]
+        category = data[:category]
+        name = data[:name]
+        base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
+        uri = URI(base_url)
+        puts uri
 
-      request = Net::HTTP::Get.new(uri)
-      request["Accept"] = "application/vnd.github+json"
-      request["Authorization"] = "Bearer #{token}"
-      request["X-GitHub-Api-Version"] = "2022-11-28"
+        request = Net::HTTP::Get.new(uri)
+        request["Accept"] = "application/vnd.github+json"
+        request["Authorization"] = "Bearer #{token}"
+        request["X-GitHub-Api-Version"] = "2022-11-28"
 
-      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        http.request(request)
+        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+          http.request(request)
+        end
+
+        if response.code.to_i == 200
+          commits = JSON.parse(response.body)
+          @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
+        else
+          Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
+          @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
+        end
       end
-
-      if response.code.to_i == 200
-        commits = JSON.parse(response.body)
-        @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
-      else
-        Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
-        @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
-      end
+      Rails.logger.info("Data to cache: #{@commit_status.inspect}")
+      @commit_status
     end
 
     # Créer des instances de Skill pour chaque langage unique
@@ -89,7 +94,7 @@ class User < ApplicationRecord
   end
 
   def commit_status
-    @commit_status || fetch_github_commits
+    Rails.cache.read("github_commits_#{id}") || fetch_github_commits
   end
   private
 
