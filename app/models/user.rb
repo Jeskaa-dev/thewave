@@ -26,39 +26,49 @@ class User < ApplicationRecord
   end
 
   def fetch_github_commits
-    @commit_status = {}
-    # token = self.github_token
-    token = ENV['GITHUB_TOKEN_TEST']
-    username = self.github_username
+    Rails.logger.info("Starting fetch_github_commits for user #{id}")
 
-    GITHUB_PATHS.each do |repo, data|
-      path = data[:path]
-      langage = data[:langage]
-      optional = data[:Optional] == "true"
-      block = data[:block]
-      category = data[:category]
-      name = data[:name]
-      base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
-      uri = URI(base_url)
-      puts uri
+    # Tenter de récupérer les données depuis le cache
+    Rails.cache.fetch("github_commits_#{id}", expires_in: 12.hours) do
+      Rails.logger.info("Cache miss: Fetching data from API for user #{id}")
+      @commit_status = {}
+      token = ENV['GITHUB_TOKEN_TEST']
+      username = self.github_username
 
-      request = Net::HTTP::Get.new(uri)
-      request["Accept"] = "application/vnd.github+json"
-      request["Authorization"] = "Bearer #{token}"
-      request["X-GitHub-Api-Version"] = "2022-11-28"
+      GITHUB_PATHS.each do |repo, data|
+        path = data[:path]
+        langage = data[:langage]
+        optional = data[:Optional] == "true"
+        block = data[:block]
+        category = data[:category]
+        name = data[:name]
+        base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
+        uri = URI(base_url)
 
-      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        http.request(request)
+        request = Net::HTTP::Get.new(uri)
+        request["Accept"] = "application/vnd.github+json"
+        request["Authorization"] = "Bearer #{token}"
+        request["X-GitHub-Api-Version"] = "2022-11-28"
+
+        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+          http.request(request)
+        end
+
+        if response.code.to_i == 200
+          commits = JSON.parse(response.body)
+          @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
+        else
+          Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
+          @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
+        end
       end
 
-      if response.code.to_i == 200
-        commits = JSON.parse(response.body)
-        @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
-      else
-        Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
-        @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
-      end
+      Rails.logger.info("Data to cache: #{@commit_status.inspect}")
+      @commit_status # Retourne les données pour le cache
     end
+
+    # Exécution après le cache
+    Rails.logger.info("Processing skills and user_skills...")
 
     # Créer des instances de Skill pour chaque langage unique
     skills = {}
@@ -85,8 +95,14 @@ class User < ApplicationRecord
     # Instancier un plan de formation global pour l'utilisateur
     create_training_plan
 
+    Rails.logger.info("fetch_github_commits completed for user #{id}")
     @commit_status
   end
+
+  def commit_status
+    Rails.cache.read("github_commits_#{id}") || fetch_github_commits
+  end
+
 
   private
 
