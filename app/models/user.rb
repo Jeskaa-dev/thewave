@@ -26,12 +26,14 @@ class User < ApplicationRecord
   end
 
   def fetch_github_commits
+    Rails.logger.info("Starting fetch_github_commits for user #{id}")
+
+    # Tenter de récupérer les données depuis le cache
     Rails.cache.fetch("github_commits_#{id}", expires_in: 12.hours) do
-    Rails.logger.info("Fetching data from API for user #{id}")
+      Rails.logger.info("Cache miss: Fetching data from API for user #{id}")
       @commit_status = {}
-      # token = self.github_token
-      token = ENV['LELONG_TOKEN']
-      username = "Vincent-lelong"
+      token = ENV['GITHUB_TOKEN_TEST']
+      username = self.github_username
 
       GITHUB_PATHS.each do |repo, data|
         path = data[:path]
@@ -42,7 +44,6 @@ class User < ApplicationRecord
         name = data[:name]
         base_url = "https://api.github.com/repos/#{username}#{path}#{username}"
         uri = URI(base_url)
-        puts uri
 
         request = Net::HTTP::Get.new(uri)
         request["Accept"] = "application/vnd.github+json"
@@ -61,9 +62,13 @@ class User < ApplicationRecord
           @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
         end
       end
+
       Rails.logger.info("Data to cache: #{@commit_status.inspect}")
-      @commit_status
+      @commit_status # Retourne les données pour le cache
     end
+
+    # Exécution après le cache
+    Rails.logger.info("Processing skills and user_skills...")
 
     # Créer des instances de Skill pour chaque langage unique
     skills = {}
@@ -90,6 +95,7 @@ class User < ApplicationRecord
     # Instancier un plan de formation global pour l'utilisateur
     create_training_plan
 
+    Rails.logger.info("fetch_github_commits completed for user #{id}")
     @commit_status
   end
 
