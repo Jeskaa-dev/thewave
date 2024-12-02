@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     @skills = Skill.all
     @user_skills = UserSkill.all
     authorize @user
+
+    @commit_status = @user.user_commits
   end
 
   private
