@@ -179,9 +179,7 @@ GITHUB_PATHS = {
 FRAME_LEVEL = {
   level1: { difficulty: "Débutant", min: 0, max: 25 },
   level2: { difficulty: "Intermédiaire", min: 25, max: 50 },
-  level3: { difficulty: "Confirmé", min: 50, max: 75 },
-  level4: { difficulty: "Professionnel", min: 75, max: 100 },
-  level5: { difficulty: "Expert", min: 100, max: 1000 },
+  level4: { difficulty: "Professionnel", min: 50, max: 300 }
 }
 
   SKILL_LIST = {
