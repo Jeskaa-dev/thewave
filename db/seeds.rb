@@ -10,6 +10,14 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Créer des ressources pour différents niveaux de difficulté
 
+<<<<<<< HEAD
 >>>>>>> 0374b5a97e963a6b7d893bb5e1adfef66bbb2a5c
+=======
+# Créer des ressources pour différents niveaux de difficulté
+Skill.all.each do |skill|
+  FRAME_LEVEL.each do |level, data|
+    Resource.create(skill: skill, difficulty: data[:difficulty], name: "Resource for #{skill.name} - #{data[:difficulty]}")
+  end
+end
+>>>>>>> 7ec7810037b3423006f1f9cc16f95d7d28e5416f

@@ -18,8 +18,6 @@ class User < ApplicationRecord
     @commit_status = {}
     token = ENV['GIT_TOKEN_TEST']
 
-    # Créer toutes les skills en fonction de la constante SKILL_LIST
-    create_skills_from_list
 
     GITHUB_PATHS.each do |repo, data|
       path = data[:path]
@@ -71,12 +69,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  def create_skills_from_list
-    SKILL_LIST.each do |_, data|
-      Skill.find_or_create_by(name: data[:name])
-    end
-  end
 
   def create_training_plan(skills)
     skills.each do |langage, skill|
