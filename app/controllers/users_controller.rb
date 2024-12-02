@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user_skills = UserSkill.all
     authorize @user
 
-    @commit_status = @user.user_commits
+    @commit_status = @user.commit_status
   end
 
   private

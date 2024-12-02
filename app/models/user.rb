@@ -88,6 +88,9 @@ class User < ApplicationRecord
     @commit_status
   end
 
+  def commit_status
+    @commit_status || fetch_github_commits
+  end
   private
 
   def create_training_plan
