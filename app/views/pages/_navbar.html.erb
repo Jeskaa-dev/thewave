@@ -4,16 +4,16 @@
 
     <ul class="font-medium flex border border-gray-100 rounded-lg dark:border-gray-700 gap-5 text-sm md:text-base">
       <li>
-        <%= link_to "The Wave", "", class: "pl-3" %>
+        <%= link_to "The Wave", "/", class: "pl-3" %>
       </li>
       <li>
-        <%= link_to "Dashboard" %>
+        <%= link_to "Dashboard", "/" %>
       </li>
       <li>
-        <%= link_to "Skills" %>
+        <%= link_to "Skills", user_path(@user) %>
       </li>
       <li>
-        <%= link_to "Training" %>
+        <%= link_to "Training", training_plans_path(@training_plan) %>
       </li>
       <li>
         <%= link_to "Portfolio" %>

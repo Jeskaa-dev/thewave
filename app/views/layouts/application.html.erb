@@ -12,9 +12,14 @@
   </head>
 
   <body class="bg-var-black">
+    <div>
+<%= render 'pages/navbar' %>
+</div>
     <main>
       <%= yield %>
     </main>
-
+  <div>
+    <%= render 'pages/footer' %>
+  </div>
   </body>
 </html>
