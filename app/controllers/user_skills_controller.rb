@@ -4,6 +4,6 @@ class UserSkillsController < ApplicationController
     @skills = Skill.where(id: @user_skills.map(&:skill_id))
     authorize @user_skills
     @user = current_user
-    @commit_status = @user.commit_status
+    @commit_status = current_user.commit_status
   end
 end
