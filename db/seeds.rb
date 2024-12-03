@@ -14,10 +14,24 @@ FORMAT_CHOICES = ["Vidéo", "Exercices", "Formation"]
 SKILL_LIST.each do |_, data|
   skill = Skill.find_or_create_by(name: data[:name]) do |s|
     s.wagon_level = data[:wagon_level]
+    s.image_url = "app/assets/images/#{data[:name]}.png"
   end
-  puts "Created or found skill: #{skill.name}"
-end
 
+  # Update image_url even if skill already exists
+  skill.update(image_url: "/assets/images/#{data[:name]}.png")
+
+  begin
+    # Verify file exists in assets
+    image_path = Rails.root.join('app', 'assets', 'images', "#{data[:name].downcase.gsub(' ', '_')}.png")
+    unless File.exist?(image_path)
+      puts "Warning: Image not found for #{skill.name} at #{image_path}"
+    end
+  rescue => e
+    puts "Error setting image for #{skill.name}: #{e.message}"
+  end
+
+  puts "Created/updated skill: #{skill.name} with image: #{skill.image_url}"
+end
 
 
 # # Créer des ressources pour différents niveaux de difficulté
