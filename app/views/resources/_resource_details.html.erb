@@ -1,0 +1,33 @@
+<div class="flex justify-between items-start">
+  <h2 class="text-2xl font-bold"><%= resource.name %></h2>
+  <img src="<%= resource.image_url %>" class="w-32 h-32 object-cover">
+</div>
+<br>
+<p><strong>Difficulté:</strong> <%= resource.difficulty %></p>
+<br>
+<p><strong>Prix:</strong> <%= resource.price %>€</p>
+<br>
+<div class="bg-gray-100 p-4 rounded">
+  <p><%= resource.content %></p>
+</div>
+<br>
+<% if resource.format == "Vidéo" %>
+
+  <iframe
+    width="100%"
+    height="30%"
+    src="<%= resource.resource_url.gsub('watch?v=', 'embed/') %>"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+<% end %>
+<p><a href="<%= resource.resource_url %>" target="_blank" class="text-blue-500 underline">Voir la ressource</a></p>
+<br>
+<div class="flex justify-end">
+  <button id="complete-button"
+          data-resource-id="<%= resource.id %>"
+          data-action="click->resource#complete"
+          class="mt-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition-colors duration-200">    Fait!
+  </button>
+</div>

@@ -8,15 +8,24 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Supprimer toutes les instances des modèles spécifiés
+puts "Deleting all instances of User, TrainingPlan, UserSkill, Completion, and Resource..."
+Resource.destroy_all
+Completion.destroy_all
+TrainingPlan.destroy_all
+UserSkill.destroy_all
+User.destroy_all
+puts "All instances deleted."
+
 FORMAT_CHOICES = ["Vidéo", "Exercices", "Formation"]
 
-# # Créer toutes les skills en fonction de la constante SKILL_LIST
-# SKILL_LIST.each do |_, data|
-#   skill = Skill.find_or_create_by(name: data[:name]) do |s|
-#     s.wagon_level = data[:wagon_level]
-#   end
-#   puts "Created or found skill: #{skill.name}"
-# end
+# Créer toutes les skills en fonction de la constante SKILL_LIST
+SKILL_LIST.each do |_, data|
+  skill = Skill.find_or_create_by(name: data[:name]) do |s|
+    s.wagon_level = data[:wagon_level]
+  end
+  puts "Created or found skill: #{skill.name}"
+end
 
 
 
@@ -34,15 +43,32 @@ FORMAT_CHOICES = ["Vidéo", "Exercices", "Formation"]
 #     puts "Created resource: #{resource.name} with difficulty: #{resource.difficulty} and format: #{resource.format}"
 #   end
 # end
+html_image = "app/assets/images/HTML/CSS.png"
+js_image = "app/assets/images/Javascript.png"
+ruby_image = "app/assets/images/Ruby.png"
+typescript_image = "app/assets/images/TypeScript.png"
+python_image = "app/assets/images/Python.png"
+sql_image = "app/assets/images/Database.png"
+
 video_urls = [
-"https://www.youtube.com/watch?v=kUMe1FH4CHE&list=PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
-"https://www.youtube.com/watch?v=PkZNo7MFNFg&list=PLWKjhJtqVAbleDe3_ZA8h3AO2rXar-q2V",
+"https://www.youtube.com/watch?v=kUMe1FH4CHE",
+"https://www.youtube.com/watch?v=PkZNo7MFNFg",
 "https://www.youtube.com/watch?v=lkIFF4maKMU",
-"https://www.youtube.com/watch?v=tN6oJu2DqCM&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM",
-"https://www.youtube.com/watch?v=30LWjhZzg50&list=PLWKjhJtqVAbmMuZ3saqRIBimAKIMYkt0E&index=17",
-"https://www.youtube.com/watch?v=EsDFiZPljYo&list=PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ",
+"https://www.youtube.com/watch?v=tN6oJu2DqCM",
+"https://www.youtube.com/watch?v=30LWjhZzg50",
+"https://www.youtube.com/watch?v=EsDFiZPljYo",
 "https://www.youtube.com/watch?v=jKihGsmhYsc",
 "https://www.youtube.com/watch?v=HXV3zeQKqGY"
+]
+video_images = [
+  html_image,
+  js_image,
+  js_image,
+  ruby_image,
+  typescript_image,
+  python_image,
+  python_image,
+  sql_image
 ]
 video_name = [
 "Learn HTML – Full Tutorial",
@@ -87,13 +113,13 @@ video_skill_id = [
   4,
   4,
   12
-
 ]
+
 8.times do |i|
   Resource.create!(
     name: video_name[i],
     content: video_content[i],
-    image_url: "",
+    image_url: video_images[i],
     price: 0,
     difficulty: video_difficulty[i],
     resource_url: video_urls[i],
@@ -134,7 +160,7 @@ html_exercices_name = [
   Resource.create!(
     name: html_exercices_name[i],
     content: html_exercices_content[i],
-    image_url: "",
+    image_url: html_image,
     price: 0,
     difficulty: html_exercices_difficulty[i],
     resource_url: html_exercices_urls[i],
@@ -173,7 +199,7 @@ html_formation_content = [
   Resource.create!(
     name: html_formation_name[i],
     content: html_formation_content[i],
-    image_url: "",
+    image_url: html_image,
     price: html_formation_price[i],
     difficulty: html_formation_difficulty[i],
     resource_url: html_formation_urls[i],
@@ -206,7 +232,7 @@ js_exercices_name = [
   Resource.create!(
     name: js_exercices_name[i],
     content: js_exercices_content[i],
-    image_url: "",
+    image_url: js_image,
     price: 0,
     difficulty: js_exercices_difficulty[i],
     resource_url: js_exercices_urls[i],
@@ -239,7 +265,7 @@ js_formation_name = [
   Resource.create!(
     name: js_formation_name[i],
     content: js_formation_content[i],
-    image_url: "",
+    image_url: js_image,
     price: js_formation_price[i],
     difficulty: js_formation_difficulty[i],
     resource_url: js_formation_urls[i],
@@ -269,7 +295,7 @@ ruby_exercices_name = [
   Resource.create!(
     name: ruby_exercices_name[i],
     content: ruby_exercices_content[i],
-    image_url: "",
+    image_url: ruby_image,
     price: 0,
     difficulty: ruby_exercices_difficulty[i],
     resource_url: ruby_exercices_urls[i],
@@ -303,7 +329,7 @@ ruby_formation_content = [
   Resource.create!(
     name: ruby_formation_name[i],
     content: ruby_formation_content[i],
-    image_url: "",
+    image_url: ruby_image,
     price: ruby_formation_price[i],
     difficulty: ruby_formation_difficulty[i],
     resource_url: ruby_formation_urls[i],
@@ -315,7 +341,7 @@ end
 Resource.create!(
   name: "Understanding Typescript",
   content: "Boost your JavaScript projects with TypeScript: Learn all about core types, generics, TypeScript + React or Node & more!",
-  image_url: "",
+  image_url: typescript_image,
   price: 24.99,
   difficulty: "Débutant",
   resource_url: "	https://www.udemy.com/course/understanding-typescript",
@@ -325,7 +351,7 @@ Resource.create!(
 Resource.create!(
   name: "Exercism Typescript",
   content: "Exercism is a platform that provides you with coding exercises to improve your coding skills. You can choose from a variety of exercises and improve your TypeScript skills.",
-  image_url: "",
+  image_url: typescript_image,
   price: 0,
   difficulty: "Débutant",
   resource_url: "https://exercism.org/tracks/typescript/exercises",
@@ -362,7 +388,7 @@ python_formation_content = [
   Resource.create!(
     name: python_formation_name[i],
     content: python_formation_content[i],
-    image_url: "",
+    image_url: python_image,
     price: 0,
     difficulty: python_formation_difficulty[i],
     resource_url: python_formation_urls[i],
@@ -392,7 +418,7 @@ python_exercices_name = [
   Resource.create!(
     name: python_exercices_name[i],
     content: python_exercices_content[i],
-    image_url: "",
+    image_url: python_image,
     price: 0,
     difficulty: python_exercices_difficulty[i],
     resource_url: python_exercices_urls[i],
@@ -425,7 +451,7 @@ sql_formation_difficulty = [
   Resource.create!(
     name: sql_formation_name[i],
     content: sql_formation_content[i],
-    image_url: "",
+    image_url: sql_image,
     price: 0,
     difficulty: sql_formation_difficulty[i],
     resource_url: sql_formation_urls[i],
@@ -436,7 +462,7 @@ end
 Resource.create!(
   name: "Hacker Rank Database",
   content: "HackerRank is a platform that provides you with coding exercises to improve your coding skills. You can choose from a variety of exercises and improve your SQL skills.",
-  image_url: "",
+  image_url: sql_image,
   price: 0,
   difficulty: "Intermédiaire",
   resource_url: "https://www.hackerrank.com/domains/tutorials",

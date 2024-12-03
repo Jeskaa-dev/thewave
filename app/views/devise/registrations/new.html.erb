@@ -1,47 +1,45 @@
+  <div class="max-w-md mt-24 mx-auto">
+    <div class="bg-var-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 space-y-6">
+        <h3 class="text-l font-base text-gray-900 dark:text-white text-center"><strong>Bienvenue chez The Wave ! 👏</strong></h3>
+        <p class="text-base font-light text-gray-900 dark:text-white text-justify">Tout d'abord Bravo ! <br> Tu viens de finaliser ta formation Le Wagon 🥳</p>
+        <p class="text-base font-light text-gray-900 dark:text-white text-justify">Nous pouvons désormais t'accompagner.
+         <br> Nous allons passer en revue tes exercices pour calculer tes acquis et ainsi te créer un plan de formation personnalisé.</p>
+        <p class="text-base font-light text-gray-900 dark:text-white text-justify">La connexion se fait avec Github.</p>
 
-<h3>Bienvenue chez The Wave! 👏</h3>
-<p>Tout d'abord Bravo! tu viens de finaliser ta formation Le Wagon 🥳</p>
-<p>Nous allons t'accompagner à la sortie de ta formation.</p>
-<p>Dans un premier connecte-toi avec Github, nous allons passer en revue tes exercices puis construire un bilan et un plan de formation</p>
-
-<%# <div class="container m-40">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%# <%= devise_error_messages! %>
-
-  <%# <div class="field">
-    <%= f.label :email %>
-    <%# <br /> %>
-    <%# <%= f.email_field :email, autofocus: true %>
-  <%# </div> %>
-
-  <%# <div class="field">
-    <%= f.label :password %>
-    <%# <% if @minimum_password_length %>
-      <%# <em>(<%= @minimum_password_length characters minimum)</em> %>
-    <%# <% end %>
-    <%# <br /> %>
-    <%# <%= f.password_field :password, autocomplete: "off" %>
-  <%# </div> %>
-
-  <%# <div class="field"> %>
-    <%# <%= f.label :password_confirmation %>
-    <%# <br /> %>
-    <%# <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  <%# </div> %>
-
-  <%# <div class="actions"> %>
-    <%# <%= f.submit "Sign up" %>
-  <%# </div> %>
-<%# <% end %>
-<%# </div> %>
-
-<div class="m-40">
-  <div>
-    <div>
-     <%= image_tag("GitLogoColor.png", alt: "logo Github", class: "w-30 h-30 rounded mb-30 mt-50" ) %>
+        <div class="flex justify-center">
+        <%= link_to "Se connecter", user_github_omniauth_authorize_path, class: "text-base font-small text-[#1B9C91]" %>
+        </div>
+        <%= image_tag "GitLogoColor.png", alt: "logo Github", class: "w-10 h-10 rounded block mx-auto" %>
     </div>
-  <%= link_to "Sign up with GitHub", user_github_omniauth_authorize_path, class: "btn btn-primary mt-30" %>
-</div>
-</div>
+  </div>
+
+  <%# <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%# <%= devise_error_messages! %>
+
+    <%# <div class="field">
+      <%= f.label :email %>
+      <%# <br /> %>
+      <%# <%= f.email_field :email, autofocus: true %>
+    <%# </div> %>
+
+    <%# <div class="field">
+      <%= f.label :password %>
+      <%# <% if @minimum_password_length %>
+        <%# <em>(<%= @minimum_password_length characters minimum)</em> %>
+      <%# <% end %>
+      <%# <br /> %>
+      <%# <%= f.password_field :password, autocomplete: "off" %>
+    <%# </div> %>
+
+    <%# <div class="field"> %>
+      <%# <%= f.label :password_confirmation %>
+      <%# <br /> %>
+      <%# <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%# </div> %>
+
+    <%# <div class="actions"> %>
+      <%# <%= f.submit "Sign up" %>
+    <%# </div> %>
+  <%# <% end %>
 
 <%# <%= render "devise/shared/links" %>

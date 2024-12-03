@@ -24,5 +24,4 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug "OmniAuth request for controller: #{params[:controller]}"
     params[:controller] =~ /omniauth/ || params[:controller] =~ /pages/
   end
-
 end
