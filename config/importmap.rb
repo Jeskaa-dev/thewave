@@ -7,4 +7,4 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 # pin "@popperjs/core", to: "popper.js", preload:true
 pin "flowbite", to: "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.turbo.min.js"
-# pin "plotly", to: "https://cdn.plot.ly/plotly-2.35.2.min.js"
+pin "plotly", to: "https://cdn.plot.ly/plotly-2.35.2.min.js"

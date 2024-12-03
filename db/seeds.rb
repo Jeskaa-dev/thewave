@@ -443,3 +443,4 @@ Resource.create!(
   skill_id: 12,
   format: "Exercice"
 )
+

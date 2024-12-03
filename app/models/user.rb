@@ -99,10 +99,14 @@ class User < ApplicationRecord
     @commit_status
   end
 
+  def proficiency_in(skill)
+    user_skill = user_skills.find_by(skill: skill)
+    user_skill ? user_skill.rating : 0
+  end
+
   def commit_status
     Rails.cache.read("github_commits_#{id}") || fetch_github_commits
   end
-
 
   private
 

@@ -215,6 +215,8 @@ GEM
     orm_adapter (0.5.0)
     ostruct (0.6.1)
     pg (1.5.9)
+    plotlyjs-rails (1.0.0)
+      rails (>= 3.1)
     psych (5.2.0)
       stringio
     public_suffix (6.0.1)
@@ -362,6 +364,7 @@ DEPENDENCIES
   omniauth (~> 2.1, >= 2.1.2)
   omniauth-github (~> 2.0, >= 2.0.1)
   pg (~> 1.1)
+  plotlyjs-rails
   puma (>= 5.0)
   pundit
   rails (~> 7.1.5)
