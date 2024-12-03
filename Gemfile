@@ -48,6 +48,7 @@ gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 gem "pundit"
+
 gem "omniauth", "~> 2.1", ">= 2.1.2"
 gem "omniauth-github", "~> 2.0", ">= 2.0.1"
 
@@ -75,4 +76,4 @@ end
 
 gem "tailwindcss-rails", "~> 3.0"
 gem 'simple_form-tailwind'
-gem 'plotlyjs-rails'
+# gem 'plotlyjs-rails'
