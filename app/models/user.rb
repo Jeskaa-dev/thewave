@@ -107,6 +107,13 @@ class User < ApplicationRecord
     cached_status
   end
 
+
+  def proficiency_in(skill)
+    user_skill = user_skills.find_by(skill: skill)
+    user_skill ? user_skill.rating : 0
+  end
+
+
   private
 
   def create_training_plan

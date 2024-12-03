@@ -1,0 +1,66 @@
+#user-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.skill-item {
+  position: relative;
+  flex: 1 1 calc(10% - 10px); /* Adjust the percentage as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: #e2e8f0; /* Tailwind's bg-gray-200 */
+  border-radius: 0.375rem; /* Tailwind's rounded */
+  padding: 1rem 1rem; /* Tailwind's px-2 py-1 */
+  font-size: 1.125rem; /* Tailwind's text-lg */
+  font-weight: 700; /* Tailwind's font-bold */
+  margin-bottom: 0.5rem; /* Tailwind's mb-2 */
+  box-sizing: border-box;
+  height: 6rem;
+  overflow: hidden;
+}
+
+.skill-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: calc(var(--rating, 0) * 1%);
+  width: 100%;
+  background-color: rgba(0, 128, 0, 0.5); /* Green with transparency */
+  z-index: 0;
+}
+
+.skill-item span {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .skill-item {
+    flex: 1 1 calc(50% - 10px); /* Adjust for smaller screens */
+  }
+}
+
+#menu-ressources {
+  border-right: 1px solid #e2e8f0; /* Tailwind's border-gray-200 */
+}
+
+.resource-item {
+  cursor: pointer;
+}
+
+.resource-item:hover {
+  background-color: #edf2f7; /* Tailwind's bg-gray-100 */
+}
+
+.resource-item:active {
+  background-color: #e2e8f0; /* Tailwind's bg-gray-200 */
+}
+
+
+#resource-details {
+  padding: 1rem;
+}
