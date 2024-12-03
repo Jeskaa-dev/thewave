@@ -4,9 +4,10 @@ require 'json'
 require 'dotenv/load' if Rails.env.development? || Rails.env.test? # Charger dotenv uniquement en développement et test
 
 class User < ApplicationRecord
-  after_save :fetch_github_commits
-  has_many :training_plans
-  has_many :user_skills
+  after_create :fetch_github_commits
+
+  has_many :training_plans, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
   has_many :resources, through: :training_plans
   # Include default devise modules. Others available are:
@@ -29,9 +30,9 @@ class User < ApplicationRecord
     Rails.logger.info("Starting fetch_github_commits for user #{id}")
 
     # Tenter de récupérer les données depuis le cache
-    Rails.cache.fetch("github_commits_#{id}", expires_in: 12.hours) do
+    @commit_status = Rails.cache.fetch("github_commits_#{id}", expires_in: 12.hours) do
       Rails.logger.info("Cache miss: Fetching data from API for user #{id}")
-      @commit_status = {}
+      commit_status = {}
       token = ENV['GITHUB_TOKEN_TEST']
       username = self.github_username
 
@@ -56,16 +57,18 @@ class User < ApplicationRecord
 
         if response.code.to_i == 200
           commits = JSON.parse(response.body)
-          @commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
+          commit_status[repo] = { done: commits.any?, langage: langage, optional: optional, name: name, block: block, category: category }
         else
           Rails.logger.error("Failed to fetch commits for repo #{repo}: #{response.body}")
-          @commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
+          commit_status[repo] = { done: false, langage: langage, optional: optional, name: name, block: block, category: category }
         end
       end
 
-      Rails.logger.info("Data to cache: #{@commit_status.inspect}")
-      @commit_status # Retourne les données pour le cache
+      Rails.logger.info("Data to cache: #{commit_status.inspect}")
+      commit_status # Retourne les données pour le cache
     end
+
+    Rails.logger.info("Commit status cached: #{@commit_status.inspect}")
 
     # Exécution après le cache
     Rails.logger.info("Processing skills and user_skills...")
@@ -95,12 +98,19 @@ class User < ApplicationRecord
     # Instancier un plan de formation global pour l'utilisateur
     create_training_plan
 
-    Rails.logger.info("fetch_github_commits completed for user #{id}")
     @commit_status
   end
 
   def commit_status
-    Rails.cache.read("github_commits_#{id}") || fetch_github_commits
+    cached_status = Rails.cache.read("github_commits_#{id}")
+    # Rails.logger.info("Retrieved commit status from cache: #{cached_status.inspect}")
+    cached_status
+  end
+
+
+  def proficiency_in(skill)
+    user_skill = user_skills.find_by(skill: skill)
+    user_skill ? user_skill.rating : 0
   end
 
 
