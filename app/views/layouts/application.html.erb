@@ -19,7 +19,7 @@
           <%= yield %>
         </main>
       <div>
-    <%= render 'pages/footer' %>
+    <%= render 'pages/footer' if user_signed_in?%>
     </div>
-  </body>
+  </body >
 </html>
