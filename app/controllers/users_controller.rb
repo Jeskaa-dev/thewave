@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = policy_scope(User).find(params[:id])
     authorize @user
 
+    # raise
     # @commit_status = @user.user_commits
   end
 
