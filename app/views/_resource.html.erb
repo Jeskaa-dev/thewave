@@ -1,0 +1,17 @@
+<div class="card-resource">
+  <div class="card-resource-infos">
+    <% @resources.each do |resource| %>
+      <div class="card-index">
+          <h2><%= resource.name %></h2>
+          <p><%= resource.skill %></p>
+          <p><%= resource.difficulty %></p>
+          <p><%= resource.price %></p>
+          <p><%= resource.content %></p>
+          <p><%= resource.resource_url %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<div id="tester" style="width:700px;height:700px;"></div>
