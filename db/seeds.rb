@@ -8,6 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Supprimer toutes les instances des modèles spécifiés
+puts "Deleting all instances of User, TrainingPlan, UserSkill, Completion, and Resource..."
+Resource.destroy_all
+Completion.destroy_all
+TrainingPlan.destroy_all
+UserSkill.destroy_all
+User.destroy_all
+puts "All instances deleted."
+
 FORMAT_CHOICES = ["Vidéo", "Exercices", "Formation"]
 
 # Créer toutes les skills en fonction de la constante SKILL_LIST
