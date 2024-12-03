@@ -298,6 +298,10 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
+    solid_cache (0.7.0)
+      activejob (>= 7)
+      activerecord (>= 7)
+      railties (>= 7)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -369,6 +373,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   simple_form-tailwind
+  solid_cache
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 3.0)
