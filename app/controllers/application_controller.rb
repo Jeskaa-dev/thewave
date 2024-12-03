@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def omniauth_request?
     Rails.logger.debug "OmniAuth request for controller: #{params[:controller]}"
-    params[:controller] =~ /omniauth/
+    params[:controller] =~ /omniauth/ || params[:controller] =~ /pages/
   end
 
 end
