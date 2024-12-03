@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :complete]
+  before_action :authenticate_user!
 
   def show
     render partial: 'resources/resource_details', locals: { resource: @resource }
@@ -7,8 +8,10 @@ class ResourcesController < ApplicationController
 
   def complete
     begin
-      completion = @resource.completions.find_or_initialize_by(user: current_user)
-      if completion.update(done: true)
+      training_plan = current_user.training_plans.first
+      completion = @resource.completions.find_by(training_plan: training_plan)
+      completion.done = true
+      if completion.save
         render json: { success: true }, status: :ok
       else
         render json: { error: completion.errors.full_messages }, status: :unprocessable_entity

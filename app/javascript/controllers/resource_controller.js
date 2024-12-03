@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="resource"
 export default class extends Controller {
   static targets = ["details"]
-  
+
   connect() {
     console.log("Resource controller connected")
   }
