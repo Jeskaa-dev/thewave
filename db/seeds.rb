@@ -64,83 +64,91 @@ typescript_image = "app/assets/images/TypeScript.png"
 python_image = "app/assets/images/Python.png"
 sql_image = "app/assets/images/Database.png"
 
-video_urls = [
-"https://www.youtube.com/watch?v=kUMe1FH4CHE",
-"https://www.youtube.com/watch?v=PkZNo7MFNFg",
-"https://www.youtube.com/watch?v=lkIFF4maKMU",
-"https://www.youtube.com/watch?v=tN6oJu2DqCM",
-"https://www.youtube.com/watch?v=30LWjhZzg50",
-"https://www.youtube.com/watch?v=EsDFiZPljYo",
-"https://www.youtube.com/watch?v=jKihGsmhYsc",
-"https://www.youtube.com/watch?v=HXV3zeQKqGY"
-]
-video_images = [
-  html_image,
-  js_image,
-  js_image,
-  ruby_image,
-  typescript_image,
-  python_image,
-  python_image,
-  sql_image
-]
-video_name = [
-"Learn HTML – Full Tutorial",
-"Learn JavaScript - Full Course",
-"100+ JavaScript Concepts you Need to Know",
-"Back End Developer Roadmap",
-"Learn TypeScript – Full Tutorial",
-"Data Analysis with Python",
-"Advanced Python Course For 2023 With Python Projects",
-"SQL Tutorial - Full Database Course"
-]
+Resource.create!(
+  name: "Learn HTML – Full Tutorial",
+  content: "Learn HTML in this complete course for beginners. This is an all-in-one beginner tutorial to help you learn web development skills. This course teaches HTML5. Choose the chapter according to your level.",
+  image_url: html_image,
+  price: 0,
+  difficulty:  "Intermédiaire",
+  resource_url: "https://www.youtube.com/watch?v=kUMe1FH4CHE",
+  skill_id: Skill.where(name: "HTML/CSS").first.id,
+  format: "Vidéo"
+)
+
+Resource.create!(
+  name: "Learn JavaScript - Full Course",
+  content: "This complete 134-part JavaScript tutorial for beginners will teach you everything you need to know to get started with the JavaScript programming language. Choose the chapter according to your level.",
+  image_url: js_image,
+  price: 0,
+  difficulty: "Intermédiaire",
+  resource_url: "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+  skill_id: Skill.where(name: "JavaScript").first.id,
+  format: "Vidéo"
+)
+Resource.create!(
+  name: "100+ JavaScript Concepts you Need to Know",
+  content: "The ultimate 10 minute JavaScript course that quickly breaks down over 100 key concepts every web developer should know.",
+  image_url: js_image,
+  price: 0,
+  difficulty: "Intermédiaire",
+  resource_url: "https://www.youtube.com/watch?v=lkIFF4maKMU",
+  skill_id: Skill.where(name: "JavaScript").first.id,
+  format: "Vidéo"
+)
 
 
-video_difficulty = [
-  "Intermédiaire",
-  "Intermédiaire",
-  "Débutant",
-  "Intermédiaire",
-  "Intermédiaire",
-  "Débutant",
-  "Professionnel",
-  "Intermédiaire"
-]
+Resource.create!(
+  name: "Back End Developer Roadmap",
+  content: "Learn what technologies you should learn first to become a back end web developer.",
+  image_url: ruby_image,
+  price: 0,
+  difficulty: "Intermédiaire",
+  resource_url: "https://www.youtube.com/watch?v=tN6oJu2DqCM",
+  skill_id: Skill.where(name: "Ruby").first.id,
+  format: "Vidéo"
+)
 
-video_content = [
-"Learn HTML in this complete course for beginners. This is an all-in-one beginner tutorial to help you learn web development skills. This course teaches HTML5. Choose the chapter according to your level.",
-"This complete 134-part JavaScript tutorial for beginners will teach you everything you need to know to get started with the JavaScript programming language. Choose the chapter according to your level.",
-"The ultimate 10 minute JavaScript course that quickly breaks down over 100 key concepts every web developer should know.",
-"Learn what technologies you should learn first to become a back end web developer.",
-"Learn how to program with TypeScript in this full course. TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. TypeScript provides better error checking than JavaScript. This is because TypeScript uses a static type system, which means that the type of a variable is checked before the code is executed.",
-"Data Analysis with Python: Zero to Pandas” is a practical, beginner-friendly, and coding-focused introduction to data analysis covering the basics of Python, Numpy, Pandas, data visualization and exploratory data analysis. Choose the chapter according to your level.",
-"In this power-packed series, we'll equip you with the tools and knowledge to take your Python skills from competent to extraordinary. Whether you're an aspiring developer or a seasoned coder, this course is designed to elevate your coding prowess and explore Python's most advanced concepts.",
-"In this course, we'll be looking at database management basics and SQL using the MySQL RDBMS. Choose the chapter according to your level."
-]
+Resource.create!(
+  name:"Learn TypeScript – Full Tutorial",
+  content: "Learn how to program with TypeScript in this full course. TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. TypeScript provides better error checking than JavaScript. This is because TypeScript uses a static type system, which means that the type of a variable is checked before the code is executed.",
+  image_url: typescript_image,
+  price: 0,
+  difficulty:   "Débutant",
+  resource_url:"https://www.youtube.com/watch?v=30LWjhZzg50",
+  skill_id: Skill.where(name: "TypeScript").first.id,
+  format: "Vidéo"
+)
+Resource.create!(
+  name: "Data Analysis with Python",
+  content: "Data Analysis with Python: Zero to Pandas” is a practical, beginner-friendly, and coding-focused introduction to data analysis covering the basics of Python, Numpy, Pandas, data visualization and exploratory data analysis. Choose the chapter according to your level.",
+  image_url: python_image,
+  price: 0,
+  difficulty: "Débutant",
+  resource_url: "https://www.youtube.com/watch?v=EsDFiZPljYo",
+  skill_id: Skill.where(name: "Python").first.id,
+  format: "Vidéo"
+)
 
-video_skill_id = [
-  1,
-  3,
-  3,
-  2,
-  7,
-  4,
-  4,
-  12
-]
-
-8.times do |i|
-  Resource.create!(
-    name: video_name[i],
-    content: video_content[i],
-    image_url: video_images[i],
-    price: 0,
-    difficulty: video_difficulty[i],
-    resource_url: video_urls[i],
-    skill_id: video_skill_id[i],
-    format: "Vidéo"
-  )
-end
+Resource.create!(
+  name: "Advanced Python Course For 2023 With Python Projects",
+  content: "In this power-packed series, we'll equip you with the tools and knowledge to take your Python skills from competent to extraordinary. Whether you're an aspiring developer or a seasoned coder, this course is designed to elevate your coding prowess and explore Python's most advanced concepts.",
+  image_url: python_image,
+  price: 0,
+  difficulty: "Professionnel",
+  resource_url: "https://www.youtube.com/watch?v=jKihGsmhYsc",
+  skill_id: Skill.where(name: "Python").first.id,
+  format: "Vidéo"
+)
+Resource.create!(
+  name: "SQL Tutorial - Full Database Course",
+  content: "In this course, we'll be looking at database management basics and SQL using the MySQL RDBMS. Choose the chapter according to your level.",
+  image_url: sql_image,
+  price: 0,
+  difficulty: "Intermédiaire",
+  resource_url:"https://www.youtube.com/watch?v=HXV3zeQKqGY",
+  skill_id: Skill.where(name: "Database").first.id,
+  format: "Vidéo"
+)
 
 html_exercices_urls = [
   "https://www.frontendmentor.io/challenges?difficulty=2",
@@ -178,7 +186,7 @@ html_exercices_name = [
     price: 0,
     difficulty: html_exercices_difficulty[i],
     resource_url: html_exercices_urls[i],
-    skill_id: 1,
+    skill_id: Skill.where(name: "HTML/CSS").first.id,
     format: "Exercice"
   )
 end
@@ -217,7 +225,7 @@ html_formation_content = [
     price: html_formation_price[i],
     difficulty: html_formation_difficulty[i],
     resource_url: html_formation_urls[i],
-    skill_id: 1,
+    skill_id: Skill.where(name: "HTML/CSS").first.id,
     format: "Formation"
   )
 end
@@ -250,7 +258,7 @@ js_exercices_name = [
     price: 0,
     difficulty: js_exercices_difficulty[i],
     resource_url: js_exercices_urls[i],
-    skill_id: 3,
+    skill_id: Skill.where(name: "JavaScript").first.id,
     format: "Exercice"
   )
 end
@@ -283,7 +291,7 @@ js_formation_name = [
     price: js_formation_price[i],
     difficulty: js_formation_difficulty[i],
     resource_url: js_formation_urls[i],
-    skill_id: 3,
+    skill_id: Skill.where(name: "JavaScript").first.id,
     format: "Formation"
   )
 end
@@ -313,7 +321,7 @@ ruby_exercices_name = [
     price: 0,
     difficulty: ruby_exercices_difficulty[i],
     resource_url: ruby_exercices_urls[i],
-    skill_id: 2,
+    skill_id: Skill.where(name: "Ruby").first.id,
     format: "Exercice"
   )
 end
@@ -347,7 +355,7 @@ ruby_formation_content = [
     price: ruby_formation_price[i],
     difficulty: ruby_formation_difficulty[i],
     resource_url: ruby_formation_urls[i],
-    skill_id: 2,
+    skill_id: Skill.where(name: "Ruby").first.id,
     format: "Formation"
   )
 end
@@ -359,7 +367,7 @@ Resource.create!(
   price: 24.99,
   difficulty: "Débutant",
   resource_url: "	https://www.udemy.com/course/understanding-typescript",
-  skill_id: 7,
+  skill_id: Skill.where(name: "TypeScript").first.id,
   format: "Formation"
 )
 Resource.create!(
@@ -369,7 +377,7 @@ Resource.create!(
   price: 0,
   difficulty: "Débutant",
   resource_url: "https://exercism.org/tracks/typescript/exercises",
-  skill_id: 7,
+  skill_id: Skill.where(name: "TypeScript").first.id,
   format: "Exercice"
 )
 
@@ -406,7 +414,7 @@ python_formation_content = [
     price: 0,
     difficulty: python_formation_difficulty[i],
     resource_url: python_formation_urls[i],
-    skill_id: 4,
+    skill_id: Skill.where(name: "Python").first.id,
     format: "Formation"
   )
 end
@@ -436,7 +444,7 @@ python_exercices_name = [
     price: 0,
     difficulty: python_exercices_difficulty[i],
     resource_url: python_exercices_urls[i],
-    skill_id: 4,
+    skill_id: Skill.where(name: "Python").first.id,
     format: "Exercice"
   )
 end
@@ -469,7 +477,7 @@ sql_formation_difficulty = [
     price: 0,
     difficulty: sql_formation_difficulty[i],
     resource_url: sql_formation_urls[i],
-    skill_id: 12,
+    skill_id: Skill.where(name: "Database").first.id,
     format: "Formation"
   )
 end
@@ -480,6 +488,6 @@ Resource.create!(
   price: 0,
   difficulty: "Intermédiaire",
   resource_url: "https://www.hackerrank.com/domains/tutorials",
-  skill_id: 12,
+  skill_id: Skill.where(name: "Database").first.id,
   format: "Exercice"
 )

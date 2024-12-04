@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
   has_many :resources, through: :training_plans
+  has_many :questions, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -111,6 +112,13 @@ class User < ApplicationRecord
   def proficiency_in(skill)
     user_skill = user_skills.find_by(skill: skill)
     user_skill ? user_skill.rating : 0
+  end
+
+  def average_proficiency
+    non_zero_skills = user_skills.where('rating > 0')
+    return 0 if non_zero_skills.empty?
+
+    (non_zero_skills.average(:rating) || 0).round
   end
 
 

@@ -1,0 +1,55 @@
+.chatbot {
+  background: white;
+  margin-top: 9px;
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.chatbot h1 {
+    border-bottom: 1px solid gray;
+    margin-bottom: 0;
+    padding: 1rem;
+  }
+
+.chatbot #questions {
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+  }
+
+.chatbot .question {
+    display: flex;
+    flex-direction: column;
+  }
+
+.chatbot .user-question, .ai-answer {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    max-width: 70%;
+    width: fit-content;
+    word-wrap: break-word;
+  }
+
+.chatbot .user-question {
+    align-self: flex-end;
+    background: blue;
+    color: white;
+  }
+
+.chatbot .ai-answer {
+    align-self: flex-start;
+    background: gray;
+  }
+
+.chatbot #new_question {
+    border-top: 1px solid gray;
+    padding: 1rem;
+  }
+
+.chatbot #new_question  .form-group {
+      margin-bottom: 0;
+    }

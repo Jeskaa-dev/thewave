@@ -17,7 +17,7 @@
         <h3 class="text-center font-medium my-5">Mes points faibles</h3>
         <div class="flex flex-row gap-5">
           <% @bottom_user_skills.each do |bottom| %>
-            <%= image_tag( "#{bottom.skill.name}.png", alt: "logo #{bottom.skill.name}", class: "w-10 h-10 rounded-full") %>
+            <%= image_tag( "#{bottom.skill.name.gsub(' ', '_')}.png", alt: "logo #{bottom.skill.name}", class: "w-10 h-10 rounded-full") %>
           <% end %>
         </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="flex flex-col w-full">
             <% @user_skills.each do |user_skill|%>
               <div class="flex-row flex items-center mb-5 gap-10">
-                <%= image_tag("#{user_skill.skill.name}.png", alt: "logo #{user_skill.skill.name}", class: "w-10 h-10 rounded-full" ) %>
+                <%= image_tag("#{user_skill.skill.name.gsub(' ', '_')}.png", alt: "logo #{user_skill.skill.name}", class: "w-10 h-10 rounded-full" ) %>
                 <div class="flex grow">
                   <div class="h-4 w-full overflow-hidden rounded-md bg-gray-300 relative">
                     <div class="w-full  rounded-full ">
