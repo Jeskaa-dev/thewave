@@ -3,29 +3,29 @@
 </div>
 
 <div class="mx-auto bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style="padding:10px; margin-top: 30px; margin-bottom: 50px; margin-left:100px; margin-right:100px">
-  <div class="flex mx-auto" style="background-color: blue; height:400px">
-    <div class="rounded-lg mt-8" style="background-color: green; width: 500px; height: 400px; margin-bottom:60px;">
-      <div id="image-container" class="w-1/3 flex justify-center items-center">
-        <img src="https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/nimxbgdzudj94lx5hjg3.png" id="current-image" alt="Mascotte" style="background-size: contain">
-        <%# <%= image_tag "mascot1.png", id: "current-image", alt: "Mascotte", class: "rounded mx-auto" %>
-      </div>
+  <div class="flex mx-auto" style="height:400px">
+    <div class="rounded-lg mt-8" style="width: 450px; height: 400px; margin-bottom:60px; position: relative; overflow: hidden;">
+      <img src="https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/nimxbgdzudj94lx5hjg3.png"
+          id="current-image"
+          alt="Mascotte"
+          style="width: 50%; height: 50%; object-fit: contain; position: absolute; top: 90px; left: 90px;">
     </div>
     <div class="fixed-container rounded-lg mt-8 mx-auto" style="width: 600px; height: 600px; margin:100px;">
       <div id="text-container" class="w-2/3">
-        <p class="hidden" style="color: white; margin-top: 20px; font-size: 12px; font-family: 'Courier Prime', monospace;">il y a quelques semaines tu rentrais en formation… </p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">et que de découvertes depuis!</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">... des outils de développeurs, des langages de développement, des méthodes de développement, … une communauté, des teachers et des collègues</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">Félicitations! Te voilà à présent dans le grand bain!</p>
-        <p class="hidden" style="margin-bottom: 10px; color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">Pour la suite, The Wave a mis en place des lignes d’eau pour te guider</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">En poursuivant dans l’univers The Wave, nous te proposons de :</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">    - T’aider à faire la synthèse de tes travaux et de tes acquis en connectant ton compte Github à TheWave</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">    - De co-construire un plan de développement continu</p>
-        <p class="hidden" style="margin-bottom: 10px; color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">    - et de te guider dans tes premières réalisations</p>
-        <p class="hidden" style="color: white; font-size: 12px; font-family: 'Courier Prime', monospace;">Es-tu prêt à surfer sur la vague ?</p>
+        <p class="hidden" style="margin-top: 20px; font-size: 12px; font-family: 'Courier Prime', monospace;">il y a quelques semaines tu rentrais en formation… </p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">et que de découvertes depuis!</p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">... des outils, des langages, des méthodes, des teachers, des collègues ... une communauté  </p>
+        <p class="hidden" style="margin-bottom: 20px; font-size: 12px; font-family: 'Courier Prime', monospace;">Félicitations! Te voilà à présent dans le grand bain!</p>
+        <p class="hidden" style="margin-bottom: 20px; font-size: 12px; font-family: 'Courier Prime', monospace;">Pour la suite, The Wave a mis en place des lignes d’eau pour te guider</p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">En poursuivant dans l’univers The Wave, nous te proposons de :</p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">    - T’aider à faire la synthèse de tes travaux et de tes acquis</p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">    - De co-construire un plan de développement continu</p>
+        <p class="hidden" style="margin-bottom: 20px; font-size: 12px; font-family: 'Courier Prime', monospace;">    - et de te guider dans tes premières réalisations</p>
+        <p class="hidden" style="font-size: 12px; font-family: 'Courier Prime', monospace;">Es-tu prêt à surfer sur la vague ?</p>
       </div>
     </div>
   </div>
-  <div style="height: 60px; padding-left: 180px; padding-top:10px; background-color: yellow">
+  <div style="height: 60px; padding-left: 180px; padding-top:10px;">
     <%= link_to "Allons surfer", new_user_registration_path, class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
   </div>
 </div>

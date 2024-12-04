@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const images = [
     'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/w5cep9i8saecicddxv65.png',
     'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/drppcbyvo8t3fdw3wqpv.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318897/psiuuz8akjveew2nyefz.png',
     'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/kllkx6lax4q3m8uptkeo.png',
-    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/drppcbyvo8t3fdw3wqpv.png',
-    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/xykbkgqtyllaqgwfkky6.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733325154/vvxf1uedxvulgjkv8tts.png',
   ];
   const imageElement = document.getElementById('current-image');
   let currentParagraph = 0;
