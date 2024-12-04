@@ -23,7 +23,7 @@ FORMAT_CHOICES = ["Vidéo", "Exercices", "Formation"]
 SKILL_LIST.each do |_, data|
   skill = Skill.find_or_create_by(name: data[:name]) do |s|
     s.wagon_level = data[:wagon_level]
-    s.image_url = "app/assets/images/#{data[:name]}.png"
+    # s.image_url = "app/assets/images/#{data[:name]}.png"
   end
 
   # Update image_url even if skill already exists
