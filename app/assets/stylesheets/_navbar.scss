@@ -1,6 +1,6 @@
 nav li:hover:nth-child(n + 2) {
-  background-color: #1B9C91;
-
+  color: #1B9C91;
+  border-bottom: #1B9C91 solid 1.5px;
 }
 
  nav ul {
@@ -8,5 +8,6 @@ nav li:hover:nth-child(n + 2) {
 }
 
 .focus-list {
-  background-color: #1b9c91;
+  color: #1b9c91;
+  border-bottom: #1B9C91 solid 1.5px;
 }
