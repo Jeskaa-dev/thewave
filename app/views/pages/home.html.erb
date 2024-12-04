@@ -25,7 +25,12 @@
       </div>
     </div>
   </div>
-  <div style="height: 60px; padding-left: 180px; padding-top:10px;">
+  <div style="height: 60px; padding-left: 180px; padding-top:10px;" d="stop-audio-button">
     <%= link_to "Allons surfer", new_user_registration_path, class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
   </div>
 </div>
+
+<audio id="background-audio" autoplay loop>
+  <source src="<%= asset_path('background.mp3') %>" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
