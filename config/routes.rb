@@ -14,4 +14,7 @@ Rails.application.routes.draw do
       post :complete
     end
   end
+
+  get 'portfolio', to: 'pages#portfolio'
+
 end
