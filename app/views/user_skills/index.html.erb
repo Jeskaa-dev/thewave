@@ -26,6 +26,28 @@
 
 
 
+  <div class="flex flex-col gap-5 justify-center grow  bg-var-white   rounded-lg shadow p-10 my-10 mr-10 ml-10" style="padding: 15px 10px;">
+        <h2 class="text-center font-medium mb-5">Compétences initiales</h2>
+        <div class="flex gap-5 justify-start items-start">
+          <div class="flex flex-col w-full">
+            <% @user_skills.each do |user_skill|%>
+              <div class="flex-row flex items-center mb-5 gap-10">
+                <%= image_tag("#{user_skill.skill.name}.png", alt: "logo #{user_skill.skill.name}", class: "w-10 h-10 rounded-full" ) %>
+                <div class="flex grow">
+                  <div class="h-4 w-full overflow-hidden rounded-md bg-gray-300 relative">
+                    <div class="w-full  rounded-full ">
+                      <div class="bg-green-600 text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width:<%= user_skill.rating %>%">
+                        <%= user_skill.rating %>%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%end%>
+          </div>
+        </div>
+    </div>
+
 
 
       <!--//Début du block Ruby-->
@@ -48,7 +70,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "01-Programming-basics" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -63,7 +85,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "02-Flow-Array" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -78,7 +100,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "03-Iterators-Blocks" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -93,7 +115,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "04-Hash-Symbols" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -108,7 +130,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "05-Regular-Expressions" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -123,7 +145,7 @@
             <% @commit_status.select { |repo, details| details[:category] == "06-Parsing" }.each do |repo, details| %>
               <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
                 <p> <%= details[:name]%> </p>
-                <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
               </li>
             <% end %>
           </ul>
@@ -150,7 +172,7 @@
           <% @commit_status.select { |repo, details| details[:category] == "01-OO-Basics" }.each do |repo, details| %>
             <li class="relative inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 <%= details[:done] ? "text-primary-green bg-green-100" : "text-primary-red bg-red-100" %> gap-2">
               <p> <%= details[:name]%> </p>
-              <span class="rotate-90 <%= details[:done] ? "text-primary-green" : "text-primary-red" %>">></span>
+
             </li>
           <% end %>
         </ul>
@@ -421,26 +443,4 @@
       </ul>
     </div>
     <!--//Fin du block Front end-->
-  </div>
-
-
-  <div class="flex flex-col gap-5 justify-center grow  bg-var-white   rounded-lg shadow p-10 my-10 mr-10 ml-10" style="padding: 15px 10px;">
-        <h2 class="text-center font-medium mb-5">Compétences initiales</h2>
-        <div class="flex gap-5 justify-start items-start">
-          <div class="flex flex-col w-full">
-            <% @user_skills.each do |user_skill|%>
-              <div class="flex-row flex items-center mb-5 gap-10">
-                <%= image_tag("#{user_skill.skill.name}.png", alt: "logo #{user_skill.skill.name}", class: "w-10 h-10 rounded-full" ) %>
-                <div class="flex grow">
-                  <div class="h-4 w-full overflow-hidden rounded-md bg-gray-300 relative">
-                    <div class="w-full  rounded-full ">
-                      <div class="bg-green-600 text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width:<%= user_skill.rating %>%">
-                        <%= user_skill.rating %>%
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <%end%>
-          </div>
   </div>
