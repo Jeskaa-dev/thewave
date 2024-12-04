@@ -24,6 +24,24 @@ export default class extends Controller {
     .catch(error => {
       console.error('Error:', error)
     })
+    this.element.querySelectorAll('.resource-item').forEach(item => {
+      item.classList.remove('active')
+    })
+
+    // Add active class to clicked item
+    event.currentTarget.classList.add('active')
+
+    
+    fetch(`/resources/${resourceId}`, {
+      headers: {
+        'Accept': 'text/html',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => response.text())
+    .then(html => {
+      this.detailsTarget.innerHTML = html
+    })
   }
 
   complete(event) {

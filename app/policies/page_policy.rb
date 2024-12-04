@@ -1,4 +1,9 @@
 class PagePolicy < ApplicationPolicy
+
+  def index?
+    true
+  end
+
   def home?
     true
   end

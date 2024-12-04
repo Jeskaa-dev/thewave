@@ -1,6 +1,7 @@
 <div class="flex justify-between items-start">
   <h2 class="text-2xl font-bold"><%= resource.name %></h2>
-  <img src="<%= resource.image_url %>" class="w-32 h-32 object-cover">
+  <%= image_tag("#{resource.skill.name}.png", size: "40x40", class: "object-cover") %>
+  <%# <img src=image_tag("PHP.png") class="w-32 h-32 object-cover"> %>
 </div>
 <br>
 <p><strong>Difficulté:</strong> <%= resource.difficulty %></p>

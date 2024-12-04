@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     @user = policy_scope(User).find(params[:id])
     authorize @user
-
+    @average_proficiency = current_user.average_proficiency
     # raise
     # @commit_status = @user.user_commits
   end
@@ -17,6 +17,6 @@ class UsersController < ApplicationController
   private
 
   def user_not_authorized
-    redirect_to root_path, alert: "You are not authorized to perform this action."
+    redirect_to new_user_registration_path, alert: "You are not authorized to perform this action."
   end
 end
