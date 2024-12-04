@@ -35,7 +35,7 @@ class TrainingPlansController < ApplicationController
   private
 
   def user_not_authorized
-    redirect_to root_path, alert: "You are not authorized to perform this action."
+    redirect_to new_user_registration_path, alert: "You are not authorized to perform this action."
   end
 
   def set_training_plan
