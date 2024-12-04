@@ -49,6 +49,9 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 gem "pundit"
 gem "solid_cache"
+gem "ruby-openai"
+gem "solid_cable"
+gem "solid_queue"
 
 gem "omniauth", "~> 2.1", ">= 2.1.2"
 gem "omniauth-github", "~> 2.0", ">= 2.0.1"

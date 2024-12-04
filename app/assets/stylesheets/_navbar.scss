@@ -1,0 +1,42 @@
+nav li:hover:nth-child(n + 2) {
+  color: #1B9C91;
+  border-bottom: #1B9C91 solid 1.5px;
+}
+
+ nav ul {
+  border:none;
+}
+
+.focus-list {
+  color: #1b9c91;
+  border-bottom: #1B9C91 solid 1.5px;
+}
+
+.border-input:focus {
+  border: none!important;
+  box-shadow: 0px 0px 3px 1px #1B9C91;
+}
+
+.placeholder-input::placeholder {
+  font-style: italic;
+  color: #717171;
+  font-weight: lighter;
+}
+
+.timeline:after {
+  content: '';
+  position: absolute;
+  background-color: #9e9e9e5e;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  border: solid 1px #9e9e9e5e;
+  height: 3.5rem;
+  transform: translateY(100%);
+
+}
+
+.timeline {
+  border: solid 1px #9e9e9e5e;
+  box-shadow: 0px 0px 3px 1px #9e9e9e5e;
+}

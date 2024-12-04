@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   const paragraphs = document.querySelectorAll('#text-container p');
   const images = [
-    '<%= asset_path("/app/assets/images/mascot1.png") %>',
-    '<%= asset_path("/app/assets/images/mascot2.png") %>',
-    '<%= asset_path("/app/assets/images/mascot3.png") %>',
-    '<%= asset_path("/app/assets/images/mascot4.png") %>',
-    '<%= asset_path("/app/assets/images/mascot5.png") %>',
-    '<%= asset_path("/app/assets/images/mascot6.png") %>',
-    // Ajoutez d'autres chemins d'images ici
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/w5cep9i8saecicddxv65.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/drppcbyvo8t3fdw3wqpv.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318897/psiuuz8akjveew2nyefz.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733318898/kllkx6lax4q3m8uptkeo.png',
+    'https://res.cloudinary.com/dxqaj3mdo/image/upload/v1733325154/vvxf1uedxvulgjkv8tts.png',
   ];
   const imageElement = document.getElementById('current-image');
   let currentParagraph = 0;
@@ -18,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(function () {
         typeWriter(text, i + 1, fnCallback);
       }, 50);
-    } else if (typeof fnCallback == 'function') {
+    } else if (typeof fnCallback === 'function') {
       setTimeout(fnCallback, 700);
     }
   }

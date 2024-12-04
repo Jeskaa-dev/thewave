@@ -24,6 +24,24 @@ export default class extends Controller {
     .catch(error => {
       console.error('Error:', error)
     })
+    this.element.querySelectorAll('.resource-item').forEach(item => {
+      item.classList.remove('active')
+    })
+
+    // Add active class to clicked item
+    event.currentTarget.classList.add('active')
+
+
+    fetch(`/resources/${resourceId}`, {
+      headers: {
+        'Accept': 'text/html',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => response.text())
+    .then(html => {
+      this.detailsTarget.innerHTML = html
+    })
   }
 
   complete(event) {
@@ -46,8 +64,20 @@ export default class extends Controller {
       const checkbox = document.querySelector(`[data-resource-id="${resourceId}"] input[type="checkbox"]`)
       if (checkbox) checkbox.checked = true
     })
-    .catch(error => {
-      console.error('Error:', error)
-    })
+    const skillItem = document.querySelector(`[data-skill-id="${resource.skill_id}"]`)
+    if (skillItem) {
+      skillItem.style.setProperty('--rating', `${data.new_proficiency}%`)
+  //   .then(data => {
+  //     if (data.success) {
+  //        // Update skill proficiency display
+  //     }
+
+  //     // Refresh the page to update all proficiency displays
+  //     // Turbo.visit(window.location.href)
+  //   }
+  // })
+    .catch(error =>
+      console.error('Error:', error))
   }
+}
 }
