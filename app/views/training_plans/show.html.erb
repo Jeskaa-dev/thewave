@@ -7,6 +7,7 @@
 
     <% @skills.each do |skill| %>
       <div class="skill-item" style="--rating: <%=  current_user.proficiency_in(skill) %>; background-image: url(<%= skill.image_url %>);"">
+      <%= puts skill.image_url %>
         <%= skill.name %>
       </div>
     <% end %>
@@ -19,9 +20,8 @@
  <div class="flex h-screen" data-controller="resource">
   <div id="menu-ressources"
        class="w-1/4 min-w-[200px] max-w-[250px] p-4 border-r
-              overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[400px]
-              scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-        <% @resources.each do |resource| %>
+              " style="height: 600px; overflow: scroll;">
+                      <% @resources.each do |resource| %>
       <div class="resource-item flex justify-between items-center p-2 border-b cursor-pointer hover:bg-gray-50"
            data-resource-id="<%= resource.id %>"
            data-action="click->resource#show">
@@ -36,7 +36,7 @@
     <% end %>
   </div>
 
-  <div id="resource-details" class="flex-1 p-4" data-resource-target="details">
+  <div id="resource-details" class="flex-1 p-4" data-resource-target="details" style="overflow: scroll;">
     <!-- Resource details will be loaded here -->
   </div>
 </div>
