@@ -113,6 +113,13 @@ class User < ApplicationRecord
     user_skill ? user_skill.rating : 0
   end
 
+  def average_proficiency
+    non_zero_skills = user_skills.where('rating > 0')
+    return 0 if non_zero_skills.empty?
+
+    (non_zero_skills.average(:rating) || 0).round
+  end
+
 
   private
 
