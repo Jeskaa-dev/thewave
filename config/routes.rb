@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_skills, only: %i[index]
     resources :training_plans, only: %i[show]
+    resources :questions, only: %i[index create] do
+      collection do
+        post :chat
+      end
+    end
   end
+  
   resources :resources do
     member do
       post :complete
