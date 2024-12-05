@@ -36,7 +36,27 @@ nav li:hover:nth-child(n + 2) {
 
 }
 
+.timeline:last-child:after {
+  display: none;
+}
+
 .timeline {
   border: solid 1px #9e9e9e5e;
   box-shadow: 0px 0px 3px 1px #9e9e9e5e;
+}
+
+.timeline-done {
+  border: solid 1px #1B9C91;
+  box-shadow: 0px 0px 3px 1px #1B9C91;
+}
+.timeline-done:after {
+  background-color: #1B9C91;
+  border: solid 1px #1B9C91;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  content: '';
+  position: absolute;
+  height: 3.5rem;
+  transform: translateY(100%);
 }

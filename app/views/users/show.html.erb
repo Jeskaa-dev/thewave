@@ -2,10 +2,11 @@
 <div class="flex flex-1 gap-3 bg-var-black">
 
   <div class="max-w-sm bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5 ml-3 my-3">
-<%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
+<%= image_tag("mascot0.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
 
     <h2 class="text-center font-bold underline my-3"><%= @user.github_username%></h2>
-    <p>Web Dev Toulouse</p>
+
+    <p class="text-sm">Web Dev Toulouse</p>
     <span>GitHub  <i class="fa-brands fa-github"></i></span>
       <ul class="mt-3" data-controller="career">
   <% career_programs = ['Job Seeker', 'Founder', 'Freelancer'] %>
@@ -29,11 +30,24 @@
   <% end %>
 </ul>
 
+
       <div class="text-center mt-5">
         <%= link_to "Mes acquis", user_user_skills_path(current_user), class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
       </div>
+      <div class="text-center mt-5">
+        <%= link_to user_questions_path(current_user), class: "text-white bg-primary-green my-10 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ",
+          data: {
+            controller: "chatbot-button",
+            action: "click->chatbot-button#toggle"
+          },
+          class: "flex items-end gap-2 px-4 py-2 bg-[#1B9C91] hover:bg-[#157a71] text-#1B9C91 rounded-lg transition-colors duration-200" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+          <span class="text-sm">Chat avec XavIA</span>
+        <% end %>
+      </div>
   </div>
-
 
   <div class="flex flex-col gap-5 justify-center grow  bg-var-white bg-opacity-0  rounded-lg shadow p-5 mr-3 my-3">
     <div class="container text-center rounded">
@@ -102,9 +116,9 @@
           </ol>
           <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Portfolio réalisé à :</div>
           <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: 10%"> 10%</div>
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: <%= current_user.portfolio.completion_percentage%>%"> <%= current_user.portfolio.completion_percentage%>%</div>
           </div>
-          <%= link_to "Accéder à mon Portfolio 🔥", "", class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
+          <%= link_to "Accéder à mon Portfolio 🔥",  user_portfolio_path(current_user.id, current_user.portfolio), class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
         </div>
       </div>
     </div>

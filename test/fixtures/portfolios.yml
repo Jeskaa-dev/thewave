@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  step_1_github_url: MyString
+  step_1_site_url: MyString
+  step_2_github_url: MyString
+  step_2_site_url: MyString
+  step_3_github_url: MyString
+  step_3_site_url: MyString
+  step_4_github_url: MyString
+  step_4_site_url: MyString
+  step_5_github_url: MyString
+  step_5_site_url: MyString
+
+two:
+  user: two
+  step_1_github_url: MyString
+  step_1_site_url: MyString
+  step_2_github_url: MyString
+  step_2_site_url: MyString
+  step_3_github_url: MyString
+  step_3_site_url: MyString
+  step_4_github_url: MyString
+  step_4_site_url: MyString
+  step_5_github_url: MyString
+  step_5_site_url: MyString
