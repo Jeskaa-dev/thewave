@@ -100,6 +100,9 @@ class User < ApplicationRecord
     # Instancier un plan de formation global pour l'utilisateur
     create_training_plan
 
+    # Crée un portfolio vide pour l'utilisateur
+    create_portfolio
+
     @commit_status
   end
 

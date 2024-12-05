@@ -3,6 +3,7 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update]
 
   def show
+    @user = current_user
 
   end
 
@@ -21,11 +22,11 @@ class PortfoliosController < ApplicationController
   private
 
     def set_portfolio
-      @portfolio = current_user.portfolio || current_user.create_portfolio
+      @portfolio = current_user.portfolio
     end
 
     def portfolio_params
       params.require(:portfolio).permit(:step_1_github_url, :step_1_site_url, :step_2_github_url, :step_2_site_url, :step_3_github_url, :step_3_site_url, :step_4_github_url, :step_4_site_url, :step_5_github_url, :step_5_site_url)
     end
-  end
+
 end
