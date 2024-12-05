@@ -1,6 +1,6 @@
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_portfolio, only: [:show, :edit, :update]
+  before_action :set_portfolio, only: [:show, :edit, :update, :update_step]
 
   def show
     @user = current_user

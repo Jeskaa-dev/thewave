@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   end
 
   resources :portfolios, only: [:show] do
-    member do
-      patch :update_step
-    end
+  member do
+    patch :update_step
   end
+end
 
 
 end

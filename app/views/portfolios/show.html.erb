@@ -7,17 +7,9 @@
       <div class="mr-6">
         <p class="text-[10px] font-bold text-gray-400">STEP 1</p>
         <h6 class="text-base font-bold text-gray-800 mt-2">Site vitrine / Site du portfolio</h6>
-        <form action="" method="get" class="flex flex-col">
-          <div class="flex justify-center items-center my-3" style="width:100%;">
-            <label for="">Lien GitHub</label>
-            <input class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3" type="text" placeholder="insert ton lien ici">
-          </div>
-          <div class="flex justify-center items-center mb-3" style="width:100%;">
-            <label for="">Lien url</label>
-            <input style="margin-left:2.9rem" type="text" placeholder="insert ton url ici" class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3">
-          </div>
-          <input type="submit" value="Enregistrer" class="text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center cursor-pointer" style="width: 160px;margin:0 auto"/>
-        </form>
+        <%= turbo_frame_tag "step-1" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 1 %>
+        <% end %>
       </div>
     </div>
     <!--//Fin du premier bloc-->
@@ -25,17 +17,9 @@
       <div class="mr-6">
         <p class="text-[10px] font-bold text-gray-400">STEP 2</p>
         <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application contenant 5 tables de données</h6>
-        <form action="" method="get" class="flex flex-col">
-          <div class="flex justify-center items-center my-3" style="width:100%;">
-            <label for="">Lien GitHub</label>
-            <input class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3" type="text" placeholder="insert ton lien ici">
-          </div>
-          <div class="flex justify-center items-center mb-3" style="width:100%;">
-            <label for="">Lien url</label>
-            <input style="margin-left:2.9rem" type="text" placeholder="insert ton url ici" class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3">
-          </div>
-          <input type="submit" value="Enregistrer" class="text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center cursor-pointer" style="width: 160px;margin:0 auto"/>
-        </form>
+        <%= turbo_frame_tag "step-2" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 2 %>
+        <% end %>
       </div>
     </div>
     <!--//Fin du deuxième bloc-->
@@ -43,17 +27,9 @@
       <div class="mr-6">
         <p class="text-[10px] font-bold text-gray-400">STEP 3</p>
         <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application utilisant une API</h6>
-        <form action="" method="get" class="flex flex-col">
-          <div class="flex justify-center items-center my-3" style="width:100%;">
-            <label for="">Lien GitHub</label>
-            <input class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3" type="text" placeholder="insert ton lien ici">
-          </div>
-          <div class="flex justify-center items-center mb-3" style="width:100%;">
-            <label for="">Lien url</label>
-            <input style="margin-left:2.9rem" type="text" placeholder="insert ton url ici" class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3">
-          </div>
-          <input type="submit" value="Enregistrer" class="text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center cursor-pointer" style="width: 160px;margin:0 auto"/>
-        </form>
+        <%= turbo_frame_tag "step-3" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 3 %>
+        <% end %>
       </div>
     </div>
     <!--//Fin du troisième bloc-->
@@ -61,8 +37,8 @@
       <div class="mr-6">
         <p class="text-[10px] font-bold text-gray-400">STEP 4</p>
         <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une API</h6>
-        <%= turbo_frame_tag "step-1" do %>
-          <%= render "step_form", portfolio: @portfolio, step: 1 %>
+        <%= turbo_frame_tag "step-4" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 4 %>
         <% end %>
       </div>
     </div>
@@ -71,17 +47,9 @@
       <div class="mr-6">
         <p class="text-[10px] font-bold text-gray-400">STEP 5</p>
         <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application Front-End qui consomme une application API</h6>
-        <form action="" method="get" class="flex flex-col">
-          <div class="flex justify-center items-center my-3" style="width:100%;">
-            <label for="">Lien GitHub</label>
-            <input class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3" type="text" placeholder="insert ton lien ici">
-          </div>
-          <div class="flex justify-center items-center mb-3" style="width:100%;">
-            <label for="">Lien url</label>
-            <input style="margin-left:2.9rem" type="text" placeholder="insert ton url ici" class="placeholder-input focus:outline-none focus:ring-2 border-input focus:ring-primary-green border-gray-200 ml-3">
-          </div>
-          <input type="submit" value="Enregistrer" class="text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center cursor-pointer" style="width: 160px;margin:0 auto"/>
-        </form>
+        <%= turbo_frame_tag "step-5" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 5 %>
+        <% end %>
       </div>
     </div>
     <!--//Fin du cinquième bloc-->
