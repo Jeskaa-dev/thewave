@@ -19,6 +19,24 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def update_step
+    if @portfolio.update(portfolio_params)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("step-#{params[:step]}", partial: "portfolios/step_form", locals: { portfolio: @portfolio, step: params[:step].to_i })
+        end
+        format.html { redirect_to portfolio_path, notice: "Étape mise à jour avec succès." }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("step-#{params[:step]}", partial: "portfolios/step_form", locals: { portfolio: @portfolio, step: params[:step].to_i })
+        end
+        format.html { render :show, alert: "Erreur lors de la mise à jour de l'étape." }
+      end
+    end
+  end
+
   private
 
     def set_portfolio
