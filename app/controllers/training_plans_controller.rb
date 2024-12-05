@@ -7,11 +7,19 @@ class TrainingPlansController < ApplicationController
 
   def show
     @user_skills = current_user.user_skills
+
     @full_skills = Skill.all
     @completions = Completion.where(training_plan_id: @training_plan.id)
     @resources = Resource.where(id: @completions.map(&:resource_id))
     @skills = Skill.where(id: @user_skills.map(&:skill_id))
     authorize @training_plan
+
+    # client = OpenAI::Client.new
+    # chatgpt_response = client.chat(parameters: {
+    #   model: "gpt-4o-mini",
+    #   messages: [{ role: 'user', content: 'Give me more information in web development, without any of your own answer.' }]
+    # })
+    # @content = chatgpt_response['choices'][0]['message']['content']
   end
 
   # def edit

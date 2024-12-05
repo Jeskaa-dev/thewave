@@ -13,8 +13,11 @@ Rails.application.routes.draw do
         post :chat
       end
     end
+    collection do
+      patch :update_career
+    end
   end
-  
+
   resources :resources do
     member do
       post :complete
@@ -22,5 +25,4 @@ Rails.application.routes.draw do
   end
 
   get 'portfolio', to: 'pages#portfolio'
-
 end

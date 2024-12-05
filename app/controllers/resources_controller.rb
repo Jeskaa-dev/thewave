@@ -16,7 +16,7 @@ class ResourcesController < ApplicationController
         # Find or create UserSkill
         user_skill = current_user.user_skills.find_or_initialize_by(skill: @resource.skill)
 
-        # Calculate and apply new proficiency
+        # Calculate and apply new rating
         increase = rating_increase_for_format(@resource.format)
         new_rating = [user_skill.rating + increase, 100].min
         user_skill.update!(rating: new_rating)
