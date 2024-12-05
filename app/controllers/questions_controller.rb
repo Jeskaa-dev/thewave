@@ -5,13 +5,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @questions = current_user.questions # needed in case of validation error
+    @questions = current_user.questions
     @question = Question.new(question_params)
     @question.user = current_user
     if @question.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:questions, partial: "questions/question",
+          render turbo_stream: turbo_stream.append(:questions, partial: 'questions/question',
             locals: { question: @question })
         end
         format.html { redirect_to questions_path }

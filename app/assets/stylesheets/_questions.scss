@@ -1,7 +1,9 @@
 .chatbot {
-  background: white;
-  margin-top: 9px;
-  height: calc(100vh - 75px);
+  background: #F7F7F7;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: calc(90vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,7 +38,7 @@
 
 .chatbot .user-question {
     align-self: flex-end;
-    background: blue;
+    background: #1B9C91;
     color: white;
   }
 
