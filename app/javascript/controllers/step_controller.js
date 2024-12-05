@@ -12,18 +12,21 @@ export default class extends Controller {
   }
 
   validateInputs() {
-    // Vérifie si tous les champs contiennent une URL valide
-    const allValid = this.inputTargets.every(input => this.isValidURL(input.value));
+      // Vérifie si tous les champs contiennent une URL valide
+      this.stepContainerTargets.forEach((container, index) => {
+        const inputs = this.inputTargets.slice(index * 2, (index + 1) * 2); // Sélectionne les deux inputs pour chaque step
+        const allValid = inputs.every(input => this.isValidURL(input.value));
 
-    // Ajoute ou supprime une classe en fonction de la validation
-    if (allValid) {
-      this.stepContainerTarget.classList.add("timeline-done");
-      this.stepContainerTarget.classList.remove("timeline");
-    } else {
-      this.stepContainerTarget.classList.add("timeline");
-      this.stepContainerTarget.classList.remove("timeline-done");
+        if (allValid) {
+          container.classList.add("timeline-done");
+          container.classList.remove("timeline");
+        } else {
+          container.classList.add("timeline");
+          container.classList.remove("timeline-done");
+        }
+      });
     }
-  }
+
 
   isValidURL(value) {
     try {
