@@ -63,12 +63,20 @@ export default class extends Controller {
         // Update checkbox
         event.target.disabled = true
         event.target.textContent = 'Complété!'
-        event.target.checkbox.checked = true
+
+    // Find checkbox in the resource list and update it
+    const resourceItem = document.querySelector(`[data-resource-id="${resourceId}"]`);
+    if (resourceItem) {
+      const checkbox = resourceItem.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    }
 
         // Update skill proficiency display
-        const skillItem = document.querySelector(`[data-skill-id="${resource.skill_id}"]`)
+        const skillItem = document.querySelector(`[data-skill-id="${data.skill_id}"]`);
         if (skillItem) {
-          skillItem.style.setProperty('--rating', `${data.new_rating}%`)
+          skillItem.style.setProperty('--rating', `${data.new_rating}%`);
         }
 
         // Refresh the page to update all proficiency displays
@@ -78,4 +86,3 @@ export default class extends Controller {
     .catch(error => console.error('Error:', error))
   }
 }
-

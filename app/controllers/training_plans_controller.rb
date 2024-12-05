@@ -7,6 +7,7 @@ class TrainingPlansController < ApplicationController
 
   def show
     @user_skills = current_user.user_skills
+
     @full_skills = Skill.all
     @completions = Completion.where(training_plan_id: @training_plan.id)
     @resources = Resource.where(id: @completions.map(&:resource_id))
