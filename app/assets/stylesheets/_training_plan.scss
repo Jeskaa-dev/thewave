@@ -20,7 +20,7 @@
   box-sizing: border-box;
   height: 6rem;
   overflow: hidden;
-  width: 150px
+  width: 150px;
 }
 
 .skill-item::before {
@@ -40,13 +40,13 @@
 }
 
 .resource-item.active {
-  background-color: rgb(35, 48, 56);
   color: white;
+  background-color: #1B9C91
 }
-.resource-item.active:hover {
-  background-color: rgb(35, 48, 56);
-  color: white;
-}
+// .resource-item.active:hover {
+//   background-color: rgb(35, 48, 56);
+//   color: white;
+// }
 
 @media (max-width: 768px) {
   .skill-item {
@@ -60,15 +60,22 @@
 
 .resource-item {
   cursor: pointer;
+  margin: 10px;
+  // border: 1px solid black;
+  border-radius: 0.375rem; /* Tailwind's rounded */
+  padding: 1rem 1rem; /* Tailwind's px-2 py-1 */
+  box-shadow: 1px 1px black;
 }
 
 .resource-item:hover {
-  background-color: #edf2f7; /* Tailwind's bg-gray-100 */
+  // background-color: #edf2f7; /* Tailwind's bg-gray-100 */
+  color: white;
+  background-color: #1B9C91 /* Tailwind's border-gray-200 */
 }
 
-.resource-item:active {
-  background-color: #e2e8f0; /* Tailwind's bg-gray-200 */
-}
+// .resource-item:active {
+//   background-color: #e2e8f0; /* Tailwind's bg-gray-200 */
+// }
 
 
 #resource-details {

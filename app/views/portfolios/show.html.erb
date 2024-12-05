@@ -1,0 +1,58 @@
+<div class="bg-var-white my-5 ml-5 mr-5 p-4">
+
+
+    <!--//Début de la liste-->
+  <div data-controller="step" class="flex items-start flex-col font-[sans-serif] max-w-[250px] " style="gap: 3.5rem;">
+    <div data-step-target="stepContainer" class=" relative timeline flex items-center justify-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse" style="width:500px;">
+      <div class="mr-6">
+        <p class="text-[10px] font-bold text-gray-400">STEP 1</p>
+        <h6 class="text-base font-bold text-gray-800 mt-2">Site vitrine / Site du portfolio</h6>
+        <%= turbo_frame_tag "step-1" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 1 %>
+        <% end %>
+      </div>
+    </div>
+    <!--//Fin du premier bloc-->
+    <div data-step-target="stepContainer" class="relative timeline flex items-center justify-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse" style="width:500px;">
+      <div class="mr-6">
+        <p class="text-[10px] font-bold text-gray-400">STEP 2</p>
+        <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application contenant 5 tables de données</h6>
+        <%= turbo_frame_tag "step-2" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 2 %>
+        <% end %>
+      </div>
+    </div>
+    <!--//Fin du deuxième bloc-->
+    <div data-step-target="stepContainer" class="relative timeline flex items-center justify-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse" style="width:500px;">
+      <div class="mr-6">
+        <p class="text-[10px] font-bold text-gray-400">STEP 3</p>
+        <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application utilisant une API</h6>
+        <%= turbo_frame_tag "step-3" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 3 %>
+        <% end %>
+      </div>
+    </div>
+    <!--//Fin du troisième bloc-->
+    <div data-step-target="stepContainer" class="relative timeline flex items-center justify-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse" style="width:500px;">
+      <div class="mr-6">
+        <p class="text-[10px] font-bold text-gray-400">STEP 4</p>
+        <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une API</h6>
+        <%= turbo_frame_tag "step-4" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 4 %>
+        <% end %>
+      </div>
+    </div>
+    <!--//Fin du quatrième bloc-->
+        <div data-step-target="stepContainer" class="relative timeline flex items-center justify-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse" style="width:500px;">
+      <div class="mr-6">
+        <p class="text-[10px] font-bold text-gray-400">STEP 5</p>
+        <h6 class="text-base font-bold text-gray-800 mt-2">Création d'une application Front-End qui consomme une application API</h6>
+        <%= turbo_frame_tag "step-5" do %>
+          <%= render "step_form", portfolio: @portfolio, step: 5 %>
+        <% end %>
+      </div>
+    </div>
+    <!--//Fin du cinquième bloc-->
+  </div>
+  <!--//Fin de la liste-->
+</div>
