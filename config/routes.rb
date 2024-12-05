@@ -14,6 +14,9 @@ Rails.application.routes.draw do
         post :chat
       end
     end
+    collection do
+      patch :update_career
+    end
   end
 
   resources :resources do
@@ -27,6 +30,4 @@ Rails.application.routes.draw do
     patch :update_step
   end
 end
-
-
 end
