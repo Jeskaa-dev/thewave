@@ -1,11 +1,10 @@
 <nav class="bg-var-white flex border-gray-200 dark:bg-gray-900 justify-between items-center" style="height:3rem;">
   <div class="flex items-center justify-between" style="height:3rem;">
-  <%= image_tag("mascot0.png", alt: "logo TheWave", class: "w-12 h-12 rounded ml-5" ) %>
-
+    <%= image_tag("mascot0.png", alt: "logo TheWave", class: "w-12 h-12 rounded ml-5" ) %>
 
     <ul class="font-medium flex border border-gray-100 rounded-lg dark:border-gray-700 text-sm md:text-base h-full" style="height:3rem; align-items: center;">
       <li class="flex items-center" style="height:100%;">
-       <p>The Wave</p>
+        <p>The Wave</p>
       </li>
       <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_path(current_user))%>" style="height:100%;">
         <%= link_to "Mon tableau de bord", user_path(current_user)%>
@@ -22,7 +21,10 @@
     </ul>
   </div>
 
-  <div class="flex items-center justify-end mr-5">
-      <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'btn btn-danger ml-2' %>
+  <div class="flex items-center justify-end mr-5" data-controller="global-audio" data-global-audio-audio-url-value="https://res.cloudinary.com/dxqaj3mdo/video/upload/v1733330493/uligkdlvn4xdryytgqtc.mp3">
+    <button data-action="global-audio#toggleAudio" class="text-xl">
+      <i class="fa-solid fa-volume-xmark" data-global-audio-target="audioIcon"></i>
+    </button>
+    <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'btn btn-danger ml-2' %>
   </div>
 </nav>
