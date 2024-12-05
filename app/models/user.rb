@@ -114,7 +114,7 @@ class User < ApplicationRecord
     user_skill ? user_skill.rating : 0
   end
 
-  def average_proficiency
+  def average_rating
     non_zero_skills = user_skills.where('rating > 0')
     return 0 if non_zero_skills.empty?
 
