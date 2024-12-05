@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
   has_many :resources, through: :training_plans
   has_many :questions, dependent: :destroy
+  validates :career_program, inclusion: { in: ['Job Seeker', 'Founder', 'Freelancer'], allow_nil: true }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -13,7 +13,10 @@ class UsersController < ApplicationController
     # raise
     # @commit_status = @user.user_commits
   end
-
+  def update_career
+    current_user.update(career_program: params[:career_program])
+    head :ok
+  end
   private
 
   def user_not_authorized
