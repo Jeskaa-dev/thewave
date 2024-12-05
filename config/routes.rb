@@ -22,6 +22,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'portfolio', to: 'pages#portfolio'
+
 
 end

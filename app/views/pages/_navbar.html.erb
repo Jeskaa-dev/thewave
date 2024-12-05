@@ -16,8 +16,8 @@
       <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_training_plan_path(current_user.id, current_user.training_plans.last.id))%>" style="height:100%;">
         <%= link_to "Mes formations", user_training_plan_path(current_user.id, current_user.training_plans.last.id)  %>
       </li>
-      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(portfolio_path)%> " style="height:100%;">
-        <%= link_to "Portfolio", portfolio_path %>
+      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_portfolio_path(current_user.portfolio))%> " style="height:100%;">
+        <%= link_to "Portfolio", user_portfolio_path(current_user.portfolio) %>
       </li>
     </ul>
   </div>
