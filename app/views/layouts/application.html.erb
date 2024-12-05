@@ -20,17 +20,17 @@
     <script src="https://unpkg.com/@hotwired/stimulus@3.2.2/dist/stimulus.umd.js"></script>
     <script src="https://unpkg.com/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"></script>
     <%= javascript_include_tag "application", defer: true %>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
   </head>
 
-  <body class="bg-var-black">
+  <body class="bg-var-black" style="min-height: 100vh; display: flex; justify-content: space-between; flex-direction: column;">
     <div>
       <%= render 'pages/navbar' if user_signed_in? %>
     </div>
-    <main style="min-height: 87vh">
+    <main style="flex-grow: 2">
       <%= yield %>
     </main>
-    <div>
+    <div style="width: 100%">
       <%= render 'pages/footer' if user_signed_in?%>
     </div>
   </body >

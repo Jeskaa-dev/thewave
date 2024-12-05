@@ -81,3 +81,5 @@ end
 gem "tailwindcss-rails", "~> 3.0"
 gem 'simple_form-tailwind'
 # gem 'plotlyjs-rails'
+
+gem "hotwire-rails", "~> 0.1.3"

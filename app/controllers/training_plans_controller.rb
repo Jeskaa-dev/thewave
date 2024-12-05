@@ -7,11 +7,19 @@ class TrainingPlansController < ApplicationController
 
   def show
     @user_skills = current_user.user_skills
+
     @full_skills = Skill.all
     @completions = Completion.where(training_plan_id: @training_plan.id)
     @resources = Resource.where(id: @completions.map(&:resource_id))
     @skills = Skill.where(id: @user_skills.map(&:skill_id))
     authorize @training_plan
+
+    # client = OpenAI::Client.new
+    # chatgpt_response = client.chat(parameters: {
+    #   model: "gpt-4o-mini",
+    #   messages: [{ role: 'user', content: 'Give me more information in web development, without any of your own answer.' }]
+    # })
+    # @content = chatgpt_response['choices'][0]['message']['content']
   end
 
   # def edit
@@ -35,7 +43,7 @@ class TrainingPlansController < ApplicationController
   private
 
   def user_not_authorized
-    redirect_to new_user_registration_path, alert: "You are not authorized to perform this action."
+    redirect_to new_user_registration_path, alert: "Vous n'êtes pas autorisé à faire cette action."
   end
 
   def set_training_plan

@@ -9,11 +9,14 @@ class UsersController < ApplicationController
 
     @user = policy_scope(User).find(params[:id])
     authorize @user
-    @average_proficiency = current_user.average_proficiency
+    @average_rating = current_user.average_rating
     # raise
     # @commit_status = @user.user_commits
   end
-
+  def update_career
+    current_user.update(career_program: params[:career_program])
+    head :ok
+  end
   private
 
   def user_not_authorized

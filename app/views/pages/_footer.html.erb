@@ -1,29 +1,6 @@
 <footer class="mx-auto bg-var-white">
     <div class="flex items-center justify-center gap-3">
-        <%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-10 h-10 rounded-full") %>
+        <%= image_tag("mascot0.png", alt: "logo TheWave", class: "w-10 h-10 rounded-full") %>
         <p>The Wave</p>
-        <%= link_to user_questions_path(current_user),
-        data: {
-          controller: "chatbot-button",
-          action: "click->chatbot-button#toggle"
-        },
-        class: "flex items-end gap-2 px-4 py-2 bg-[#1B9C91] hover:bg-[#157a71] text-#1B9C91 rounded-lg transition-colors duration-200" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-        </svg>
-        <span>Chatbot</span>
-      <% end %>
     </div>
 </footer>
-
-
-<%# <button
-  data-controller="chatbot-button"
-  data-action="click->chatbot-button#toggle"
-  data-chatbot-button-url="<%= user_questions_path(current_user) %>
-  <%# class="flex items-center gap-2 px-4 py-2 bg-[#1E90FF] hover:bg-[#1B9C91] text-white rounded-lg transition-colors duration-200"> %>
-  <%# <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> %>
-  <%# <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /> %>
-  <%# </svg> %>
-  <%# Chatbot %>
-<%# </button>  %>

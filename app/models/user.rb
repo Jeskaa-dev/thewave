@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
   has_many :resources, through: :training_plans
   has_many :questions, dependent: :destroy
+  has_one :portfolio, dependent: :destroy
+  validates :career_program, inclusion: { in: ['Job Seeker', 'Founder', 'Freelancer'], allow_nil: true }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -99,6 +102,9 @@ class User < ApplicationRecord
     # Instancier un plan de formation global pour l'utilisateur
     create_training_plan
 
+    # Crée un portfolio vide pour l'utilisateur
+    create_portfolio
+
     @commit_status
   end
 
@@ -114,7 +120,7 @@ class User < ApplicationRecord
     user_skill ? user_skill.rating : 0
   end
 
-  def average_proficiency
+  def average_rating
     non_zero_skills = user_skills.where('rating > 0')
     return 0 if non_zero_skills.empty?
 

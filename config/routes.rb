@@ -8,19 +8,26 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_skills, only: %i[index]
     resources :training_plans, only: %i[show]
+    resources :portfolios, only: [:show, :edit, :update]
     resources :questions, only: %i[index create] do
       collection do
         post :chat
       end
     end
+    collection do
+      patch :update_career
+    end
   end
-  
+
   resources :resources do
     member do
       post :complete
     end
   end
 
-  get 'portfolio', to: 'pages#portfolio'
-
+  resources :portfolios, only: [:show] do
+  member do
+    patch :update_step
+  end
+end
 end
