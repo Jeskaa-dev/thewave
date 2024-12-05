@@ -1,8 +1,9 @@
-<div class="container chatbot">
-  <h1>Discuttons</h1>
-  <div id="questions">
-    <%= render @questions %>
+<div class="bg-var-white my-5 ml-5 mr-5 p-4 rounded-lg">
+    <h1>Discutons</h1>
+  <div>
+    <div id="questions" >
+      <%= render @questions %>
+    </div>
+    <%= render "form", question: @question %>
   </div>
-
-  <%= render "form", question: @question %>
 </div>
