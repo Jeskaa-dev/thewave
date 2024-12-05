@@ -30,7 +30,39 @@
   </div>
 </div>
 
-<audio id="background-audio" autoplay loop>
-  <source src="<%= asset_path('background.mp3') %>" type="audio/mpeg">
+<audio id="background-audio" loop>
+  <source src="https://res.cloudinary.com/dxqaj3mdo/video/upload/v1733331685/ntfnelk9mgmgfdxfuorx.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+
+<button id="audio-toggle-button" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+  <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5v14l11-7-11-7z" />
+  </svg>
+  <svg id="unmute-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5v14l11-7-11-7z" />
+  </svg>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const audioElement = document.getElementById('background-audio');
+    const toggleButton = document.getElementById('audio-toggle-button');
+    const muteIcon = document.getElementById('mute-icon');
+    const unmuteIcon = document.getElementById('unmute-icon');
+
+    toggleButton.addEventListener('click', function () {
+      if (audioElement.paused) {
+        audioElement.play().catch(error => {
+          console.log('Audio playback failed:', error);
+        });
+        muteIcon.classList.add('hidden');
+        unmuteIcon.classList.remove('hidden');
+      } else {
+        audioElement.pause();
+        muteIcon.classList.remove('hidden');
+        unmuteIcon.classList.add('hidden');
+      }
+    });
+  });
+</script>
