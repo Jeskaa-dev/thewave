@@ -17,4 +17,12 @@ class Portfolio < ApplicationRecord
 
     ((completed_steps.to_f / total_steps) * 100).round
   end
+
+  def step_done(step)
+    github_url = send("step_#{step}_github_url")
+    site_url = send("step_#{step}_site_url")
+
+    github_url.present? && site_url.present?
+
+  end
 end
