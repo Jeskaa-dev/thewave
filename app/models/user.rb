@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
   has_many :resources, through: :training_plans
   has_many :questions, dependent: :destroy
+  has_one :portfolio, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
