@@ -7,25 +7,27 @@
     <h2 class="text-center font-bold underline my-3"><%= @user.github_username%></h2>
     <p>Web Dev Toulouse</p>
     <span>GitHub  <i class="fa-brands fa-github"></i></span>
-      <ul class="mt-3">
-        <li>
-          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job Seeker</label>
-        </li>
-        <li>
-          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Founder</label>
-          </div>
-        </li>
-        <li>
-          <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Freelancer</label>
-          </div>
-        </li>
-      </ul>
+      <ul class="mt-3" data-controller="career">
+  <% career_programs = ['Job Seeker', 'Founder', 'Freelancer'] %>
+
+  <% career_programs.each do |program| %>
+    <li>
+      <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+        <input
+          id="career-<%= program.downcase.gsub(' ', '-') %>"
+          type="checkbox"
+          value="<%= program %>"
+          data-action="change->career#toggle"
+          data-career-target="checkbox"
+          <%= 'checked' if @user.career_program == program %>
+          class="w-4 h-4 text-primary-green bg-gray-100 border-gray-300 rounded focus:ring-primary-green dark:focus:ring-primary-green dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="career-<%= program.downcase.gsub(' ', '-') %>" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <%= program %>
+        </label>
+      </div>
+    </li>
+  <% end %>
+</ul>
 
       <div class="text-center mt-5">
         <%= link_to "Mes acquis", user_user_skills_path(current_user), class: "text-white bg-primary-green my-5 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " %>
@@ -66,8 +68,8 @@
           </ol>
           <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Parcours réalisé à :</div>
           <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: <%= @average_proficiency %>%">
-    <%= @average_proficiency %>%</div>
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: <%= @average_rating %>%">
+    <%= @average_rating %>%</div>
           </div>
           <%= link_to "Direction mon parcours 🚀🚀", user_training_plan_path(current_user.id, current_user.training_plans.last.id), class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
         </div>

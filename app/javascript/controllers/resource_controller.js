@@ -57,27 +57,32 @@ export default class extends Controller {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok')
-      button.textContent = 'Complété!'
-      button.disabled = true
-      const checkbox = document.querySelector(`[data-resource-id="${resourceId}"] input[type="checkbox"]`)
-      if (checkbox) checkbox.checked = true
-    })
-    const skillItem = document.querySelector(`[data-skill-id="${resource.skill_id}"]`)
-    if (skillItem) {
-      skillItem.style.setProperty('--rating', `${data.new_proficiency}%`)
-  //   .then(data => {
-  //     if (data.success) {
-  //        // Update skill proficiency display
-  //     }
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Update checkbox
+        event.target.disabled = true
+        event.target.textContent = 'Complété!'
 
-  //     // Refresh the page to update all proficiency displays
-  //     // Turbo.visit(window.location.href)
-  //   }
-  // })
-    .catch(error =>
-      console.error('Error:', error))
+    // Find checkbox in the resource list and update it
+    const resourceItem = document.querySelector(`[data-resource-id="${resourceId}"]`);
+    if (resourceItem) {
+      const checkbox = resourceItem.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    }
+
+        // Update skill proficiency display
+        const skillItem = document.querySelector(`[data-skill-id="${data.skill_id}"]`);
+        if (skillItem) {
+          skillItem.style.setProperty('--rating', `${data.new_rating}%`);
+        }
+
+        // Refresh the page to update all proficiency displays
+        Turbo.visit(window.location.href)
+      }
+    })
+    .catch(error => console.error('Error:', error))
   }
-}
 }
