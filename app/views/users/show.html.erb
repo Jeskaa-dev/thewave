@@ -2,8 +2,8 @@
 <div class="flex flex-1 gap-3 bg-var-black">
 
   <div class="max-w-sm bg-var-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5 ml-3 my-3">
+<%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
 
-    <%= image_tag("Logo The Wave.png", alt: "logo TheWave", class: "w-20 h-20 rounded mx-auto" ) %>
     <h2 class="text-center font-bold underline my-3"><%= @user.github_username%></h2>
     <p>Web Dev Toulouse</p>
     <span>GitHub  <i class="fa-brands fa-github"></i></span>
@@ -66,7 +66,8 @@
           </ol>
           <div class="mb-1 text-base font-medium text-green-700 text-var-black mt-3">Parcours réalisé à :</div>
           <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+            <div class="bg-primary-green text-xs font-medium text-var-white text-center p-0.5 leading-none rounded-full" style="width: <%= @average_proficiency %>%">
+    <%= @average_proficiency %>%</div>
           </div>
           <%= link_to "Direction mon parcours 🚀🚀", user_training_plan_path(current_user.id, current_user.training_plans.last.id), class: "absolute inset-0 flex items-center justify-center text-white bg-primary-green opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded" %>
         </div>

@@ -1,22 +1,37 @@
-<div class="flex flex-col gap-5 justify-center grow bg-var-white rounded-lg shadow p-5 my-10 mr-10 ml-10">
+<div class="flex opacity-5 flex-col gap-5 justify-center grow bg-var-white rounded-lg shadow p-5 px-10 my-10 mr-10 ml-10">
+  <h2 class= "px-2 py-1 text-xl font-bold mb-4" style="border-bottom: 2px solid black; padding-bottom: 8px;">Compétences</h2>
+    <div id="user-skills" class="flex flex-wrap mb-10" style="width: 100%;">
+      <% @skills.each do |skill| %>
+      <div class="flex flex-col">
+    <div class="skill-item" style="--rating: <%= current_user.proficiency_in(skill) %>%;">
+    <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+                background-image: url(<%= asset_path("#{skill.name.gsub(' ', '_')}.png")%>);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                filter: grayscale(1);
+                z-index: 1;">
+    </div>
+    <div class="rating-overlay" style="width: 150px; height: 150px; position: absolute; bottom: 0; left: 0;
+                background-color: rgba(0, 128, 0, 0.5);
+                height: calc(<%= current_user.proficiency_in(skill) %> * 1%);
+                z-index: 1;">
+    </div>
 
-  <h1 class="text-2xl font-bold mb-5"><strong>Mon parcours de formation</strong></h1>
-    <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Compétences</h2>
-  <div id="user-skills" class="flex flex-wrap mb-10" style="width: 100%;">
-  <%# <div class="flex flex-col mb-10"> %>
-
-    <% @skills.each do |skill| %>
-      <div class="skill-item" style="--rating: <%=  current_user.proficiency_in(skill) %>; background-image: url(<%= skill.image_url %>);"">
-      <%= puts skill.image_url %>
-        <%= skill.name %>
-      </div>
-    <% end %>
-    <div class="skill-item">
-      +
+  </div>
+    <div class="text-center">
+      <%= skill.name %>
     </div>
   </div>
+      <% end %>
+      <div class="skill-item">
+        +
+      </div>
+    </div>
+</div>
 
- <h2 class="bg-gray-200 rounded px-2 py-1 text-xl font-bold mb-4">Formations</h2>
+<div class="flex flex-col gap-5 justify-center grow bg-var-white rounded-lg shadow p-5 px-10 my-10 mr-10 ml-10">
+ <h2 class="px-2 py-1 text-xl font-bold mb-4" style="border-bottom: 2px solid black; padding-bottom: 8px;">Formations</h2>
  <div class="flex h-screen" data-controller="resource">
   <div id="menu-ressources"
        class="w-1/4 min-w-[200px] max-w-[250px] p-4 border-r
@@ -39,4 +54,5 @@
   <div id="resource-details" class="flex-1 p-4" data-resource-target="details" style="overflow: scroll;">
     <!-- Resource details will be loaded here -->
   </div>
+</div>
 </div>

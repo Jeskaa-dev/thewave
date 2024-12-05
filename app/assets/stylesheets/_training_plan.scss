@@ -20,6 +20,7 @@
   box-sizing: border-box;
   height: 6rem;
   overflow: hidden;
+  width: 150px
 }
 
 .skill-item::before {
@@ -30,12 +31,21 @@
   height: calc(var(--rating, 0) * 1%);
   width: 100%;
   background-color: rgba(0, 128, 0, 0.5); /* Green with transparency */
-  z-index: 0;
+  z-index: 1;
 }
 
 .skill-item span {
   position: relative;
   z-index: 1;
+}
+
+.resource-item.active {
+  background-color: rgb(35, 48, 56);
+  color: white;
+}
+.resource-item.active:hover {
+  background-color: rgb(35, 48, 56);
+  color: white;
 }
 
 @media (max-width: 768px) {
