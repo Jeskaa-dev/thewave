@@ -6,7 +6,7 @@
       <li class="flex items-center" style="height:100%;">
         <p>The Wave</p>
       </li>
-      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_path(current_user))%>" style="height:100%;">
+      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_path(current_user))%>" style="height:100%; margin-left:50px;">
         <%= link_to "Mon tableau de bord", user_path(current_user)%>
       </li>
       <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_user_skills_path(current_user)) %>" style="height:100%;">
@@ -15,16 +15,16 @@
       <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_training_plan_path(current_user.id, current_user.training_plans.last.id))%>" style="height:100%;">
         <%= link_to "Mes formations", user_training_plan_path(current_user.id, current_user.training_plans.last.id)  %>
       </li>
-      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_portfolio_path(current_user.portfolio))%> " style="height:100%;">
-        <%= link_to "Portfolio", user_portfolio_path(current_user, current_user.portfolio) %>
+      <li class="flex items-center px-4 <%= 'focus-list' if current_page?(user_portfolio_path(current_user, current_user.portfolio))%> " style="height:100%;">
+        <%= link_to "Mon portfolio", user_portfolio_path(current_user, current_user.portfolio) %>
       </li>
     </ul>
   </div>
 
   <div class="flex items-center justify-end mr-5" data-controller="global-audio" data-global-audio-audio-url-value="https://res.cloudinary.com/dxqaj3mdo/video/upload/v1733330493/uligkdlvn4xdryytgqtc.mp3">
-    <button data-action="global-audio#toggleAudio" class="text-xl">
+    <button data-action="global-audio#toggleAudio" class="text-xl" style="margin-right:20px">
       <i class="fa-solid fa-volume-xmark" data-global-audio-target="audioIcon"></i>
     </button>
-    <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'btn btn-danger ml-2' %>
+    <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'btn btn-danger ml-2 deconnect-btn' %>
   </div>
 </nav>
