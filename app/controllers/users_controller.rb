@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user = policy_scope(User).find(params[:id])
     authorize @user
     @average_proficiency = current_user.average_proficiency
-    # raise
     # @commit_status = @user.user_commits
   end
 
