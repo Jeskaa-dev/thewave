@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  safelit: ['text-white', 'opacity-0'],
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
